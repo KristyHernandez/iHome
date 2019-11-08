@@ -1,0 +1,43 @@
+Hi,
+
+First of all - thank you for downloading our template!
+In this freebie you will find one Login screen with clear, modern and minimal design. You can use it only for personal and non-commercial projects.
+
+If you like it, feel free to check full template with 3 themes (universal + light + dark) and 3 screens in every theme (login + sign-in + forgot password). Which makes 9 nice screens for your apps. :)
+
+Before you use template, please read documentation for better understanding how to use it.
+https://csform.com/documentation-for-premium-login-component-for-ionic-three-themes/
+
+(instruction are same as for our Premium Login Component for Ionic.
+
+
+Also you can contact us at dev@csform.com if you need.
+
+Happy coding! :)
+
+
+
+CSForm Dev Team
+
+
+CREDITS:
+
+Photos
+Tech shop:
+Photo by Hugo Barbosa on Unsplash
+Photo by Ramiro Mendes on Unsplash
+Photo by Kui Ye Chen on Unsplash
+
+Fashion Store:
+Photo by Karina Carvalho on Unsplash
+Photo by Daniel Monteiro on Unsplash
+Photo by Alberto Bobbera on Unsplash
+
+
+FONT:
+https://fonts.google.com/specimen/Montserrat?selection.family=Montserrat
+
+
+
+For more templates visit us: csform.com
+

@@ -1,0 +1,8 @@
+{
+  "name": "Ionic-mini-components",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular",
+  "id": "a702f811"
+}
