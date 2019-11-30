@@ -3,6 +3,8 @@ import { NavController, MenuController, LoadingController } from '@ionic/angular
 import { TranslateProvider, HotelProvider } from '../../providers';
 
 import { environment } from '../../../environments/environment';
+import { UsersService } from '../../providers/usuarios/users.service';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 @Component({
   selector: 'app-home',
@@ -20,6 +22,10 @@ export class HomePage {
   childs: any = 0;
   children: number;
   hotellocation: string;
+  miPosicion = {
+    latitud:null,
+    longitud:null
+  }
 
   agmStyles: any[] = environment.agmStyles;
 
@@ -34,18 +40,42 @@ export class HomePage {
     date: new Date(new Date().setDate(new Date().getDate() + 1)).toISOString()
   };
 
-  constructor(
+   constructor(
     public navCtrl: NavController,
     public menuCtrl: MenuController,
     public loadingCtrl: LoadingController,
     private translate: TranslateProvider,
-    public hotels: HotelProvider
+    public hotels: HotelProvider,
+    private users: UsersService,
+    private Geolocation: Geolocation
   ) {
+
     this.hotels = hotels.getAll();
+
+    setTimeout(async () => {
+      let data = await this.users.login();
+    console.log(data);
+    }, 500);
+    
+    
   }
 
-  ionViewWillEnter() {
+    ngAfterViewInit(){
+    
+  }
+
+   async ionViewWillEnter() {
     this.menuCtrl.enable(true);
+
+    await this.Geolocation.getCurrentPosition().then((resp) => {
+      this.miPosicion.latitud = resp.coords.latitude
+      this.miPosicion.longitud = resp.coords.longitude
+      console.log(this.miPosicion);
+      
+     }).catch((error) => {
+       console.log('Error getting location', error);
+     });
+     
   }
 
   initializeItems() {

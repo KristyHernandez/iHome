@@ -24,6 +24,7 @@ import { TranslateProvider, HotelProvider } from './providers';
 // Modal Pages
 import { ImagePageModule } from './pages/modal/image/image.module';
 import { LocationPageModule } from './pages/modal/location/location.module';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -60,7 +61,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     TranslateProvider,
-    HotelProvider
+    HotelProvider,
+    Geolocation
   ],
   bootstrap: [AppComponent]
 })

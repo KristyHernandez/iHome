@@ -41,7 +41,7 @@ export class LoginPage implements OnInit {
   async forgotPass() {
     const alert = await this.alertCtrl.create({
       header: this.translate.get('app.pages.login.label.forgot'),
-      message: this.translate.get('app.pages.login.text.forgot'),
+      message: 'OLvidaste tu clave',//this.translate.get('app.pages.login.text.forgot'),
       inputs: [
         {
           name: 'email',

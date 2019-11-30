@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavController, MenuController, LoadingController } from '@ionic/angular';
+import { UsersService } from '../../providers/usuarios/users.service';
+import { usuario } from '../../models/usuario';
 
 @Component({
   selector: 'app-register',

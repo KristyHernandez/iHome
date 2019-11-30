@@ -86,7 +86,33 @@
           </ion-col>
           <ion-col size="4" class="ion-no-padding br bb bt">
 
-              <ion-item>
+              
+
+<ion-list>
+    <ion-list-header>Garaje</ion-list-header>
+  
+    <ion-item>
+      <ion-label>Garaje</ion-label>
+      <ion-select placeholder="Select One">
+        <ion-select-option value="s">Si</ion-select-option>
+        <ion-select-option value="n">No</ion-select-option>
+      </ion-select>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label>Mascotas</ion-label>
+      <ion-select value="brown" okText="Okay" cancelText="Dismiss">
+        <ion-select-option value="Si">Si</ion-select-option>
+        <ion-select-option value="No">No</ion-select-option>
+        
+      </ion-select>
+    </ion-item>
+  
+  </ion-list>
+  
+  
+
+              <ion-item hidden="true">
                 <ion-label class="ion-no-padding text-primary text08">
                   <ion-text color="dark">{{ 'app.pages.home.label.adults' | translate }}</ion-text>
                 </ion-label>
@@ -199,10 +225,10 @@
       <h3><ion-icon size="small" color="dark" name="map"></ion-icon> {{ 'app.pages.home.title.nearyou' | translate }}</h3>
     </ion-text>
 
-    <ion-card class="animated fadeIn">
+    <ion-card class="animated fadeIn" *ngIf="miPosicion.latitud != null">
       <ion-card-content class="ion-no-padding">
-        <agm-map [latitude]="hotels[0].location.lat" [longitude]="hotels[0].location.lon" [zoom]="10" [zoomControl]="false" [styles]="agmStyles" [streetViewControl]="false">
-          <agm-marker *ngFor="let hotel of hotels" [latitude]="hotel.location.lat" [longitude]="hotel.location.lon">
+        <agm-map [latitude]="miPosicion.latitud" [longitude]="miPosicion.longitud" [zoom]="10" [zoomControl]="false" [styles]="agmStyles" [streetViewControl]="false">
+          <agm-marker *ngFor="let hotel of hotels" [latitude]="miPosicion.latitud" [longitude]="miPosicion.longitud">
               <agm-info-window>
                   <ion-item tappable routerLink="/hotel-detail/{{hotel.id}}">
                     <ion-thumbnail slot="start">

@@ -23,12 +23,12 @@
 
   /* Settings text color
   =========================================*/
-  $settings-text-color-header: #CCCCCC;
+  $settings-text-color-header: #1274c4;
   $settings-text-color-button: #FFFFFF;
   $settings-text-input-color: #242424;
-  $settings-text-input-placeholder: #CCCCCC;
+  $settings-text-input-placeholder: #1274c4;
   $settings-text-color-description: #242424;
-  $settings-text-color-description-links: #687DFC;
+  $settings-text-color-description-links: #1274c4;
   $settings-text-label-color: #FF0000;
 
   /* Content
@@ -81,7 +81,7 @@
       [input-field] {
         border-radius: 8px;
         overflow: hidden;
-        border: 1px solid #CCCCCC;
+        border: 1px solid #1274c4;
 
         .item:nth-last-child(1){
           .item-inner {
@@ -111,7 +111,7 @@
         .item-inner {
           display: block !important;
           overflow: visible !important;
-          border-bottom: 1px solid #CCCCCC !important;
+          border-bottom: 1px solid #1274c4 !important;
           box-shadow: none !important;
         }
 
