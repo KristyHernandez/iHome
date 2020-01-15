@@ -11,8 +11,8 @@
       <div class="logo"></div>
       <h4 class="ion-no-margin">
         <ion-text color="light">
-          {{ 'app.name' | translate }}
-          <ion-text color="secondary" class="fw700"> {{ 'app.version' | translate }}</ion-text>
+          {{ 'app.name'  }}
+          <ion-text color="secondary" class="fw700"> {{ 'app.version'  }}</ion-text>
         </ion-text>
       </h4>
     </div>
@@ -28,58 +28,58 @@
       </ion-item>
       <p class="text08" *ngIf="onLoginForm.get('email').touched && onLoginForm.get('email').hasError('required')">
         <ion-text color="danger">
-          {{ 'app.label.errors.field' | translate }}
+          {{ 'app.label.errors.field'  }}
         </ion-text>
       </p>
 
       <ion-item class="ion-no-padding animated fadeInUp">
         <ion-label position="floating">
           <ion-icon name="lock" item-start></ion-icon>
-          {{ 'app.label.password' | translate }}
+          Contraseña
         </ion-label>
         <ion-input color="secondary" type="password" formControlName="password"></ion-input>
       </ion-item>
       <p color="danger" class="text08" *ngIf="onLoginForm.get('password').touched && onLoginForm.get('password').hasError('required')">
         <ion-text color="danger">
-          {{ 'app.label.errors.field' | translate }}
+          {{ 'app.label.errors.field'  }}
         </ion-text>
         </p>
     </form>
 
     <p tappable (click)="forgotPass()" class="ion-text-right paz">
       <ion-text color="tertiary">
-        <strong>{{ 'app.pages.login.label.forgot' | translate }}</strong>
+        <strong>Olvidaste tu contraseña?</strong>
       </ion-text>
     </p>
 
     <div>
-      <ion-button icon-left size="medium" expand="full" shape="round" color="dark" (click)="goToHome()" [disabled]="!onLoginForm.valid" tappable>
+      <ion-button icon-left size="medium" expand="full" shape="round" color="dark" (click)="loginUser()" [disabled]="!onLoginForm.valid" tappable>
         <ion-icon name="log-in"></ion-icon>
-        {{ 'app.button.signin' | translate }}
+        Iniciar
       </ion-button>
 
       <p class="ion-text-center">
         <ion-text color="light">
-          Or {{ 'app.button.signin' | translate }} with:
+         <!-- {{ 'app.button.signin'  }}-->
         </ion-text>
       </p>
 
       <ion-grid class="btn-group">
         <ion-row>
           <ion-col size="4">
-            <ion-button shape="round" expand="full" fill="outline" color="tertiary">
+            <!-- <ion-button shape="round" expand="full" fill="outline" color="tertiary">
               <ion-icon slot="icon-only" name="logo-facebook"></ion-icon>
-            </ion-button>
+            </ion-button> -->
           </ion-col>
           <ion-col size="4">
-            <ion-button shape="round" expand="full" fill="outline" color="tertiary">
+            <!-- <ion-button shape="round" expand="full" fill="outline" color="tertiary">
               <ion-icon slot="icon-only" name="logo-twitter"></ion-icon>
-            </ion-button>
+            </ion-button> -->
           </ion-col>
           <ion-col size="4">
-            <ion-button shape="round" expand="full" fill="outline" color="tertiary">
+            <!-- <ion-button shape="round" expand="full" fill="outline" color="tertiary">
               <ion-icon slot="icon-only" name="logo-googleplus"></ion-icon>
-            </ion-button>
+            </ion-button> -->
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -90,7 +90,7 @@
     <div class="ion-text-center ion-margin-top">
       <span (click)="goToRegister()" class="paz" tappable>
         <ion-text color="light">
-          New here? <strong>{{ 'app.button.signup' | translate }}</strong>
+         <strong>Registrar</strong>
         </ion-text>
       </span>
     </div>

@@ -41,7 +41,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ImagePageModule,
     LocationPageModule,
     IonicStorageModule.forRoot({
-      name: '__ionbooking2',
+      name: 'ihome',
       driverOrder: ['indexeddb', 'sqlite', 'websql']
     }),
     TranslateModule.forRoot({

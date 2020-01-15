@@ -3,9 +3,17 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>{{ 'app.pages.bookinglist.title.header' | translate }}</ion-title>
+    <ion-title>{{ 'app.pages.bookinglist.title.header'  }}</ion-title>
   </ion-toolbar>
-</ion-header>
+
+            <p class="ion-text-center">
+              <ion-text color="primary">{{ 'app.pages.bookinglist.title.nores'  }}</ion-text
+</ion-header>>
+            </p>
+          </ion-card-content>
+        </ion-card>
+  
+        <ion-list class="ion-no-padding" *ngIf="bookings.length">
 
 <ion-content class="animated fadeIn">
   <ion-grid class="ion-no-padding">
@@ -13,14 +21,6 @@
       <ion-col size="12" class="ion-no-padding ion-margin-bottom">
         <ion-card *ngIf="!bookings.length" class="ion-margin-top bg-white">
           <ion-card-content>
-            <p class="ion-text-center">
-              <ion-text color="primary">{{ 'app.pages.bookinglist.title.nores' | translate }}</ion-text>
-            </p>
-          </ion-card-content>
-        </ion-card>
-  
-        <ion-list class="ion-no-padding" *ngIf="bookings.length">
-
           <ion-item tappable routerLink="/hotel-detail/{{booking.hotel.id}}" *ngFor="let booking of bookings">
             <ion-thumbnail slot="start">
               <img [src]="booking.hotel.thumb">
@@ -30,7 +30,7 @@
                 <ion-text color="primary">{{booking.hotel.name}}</ion-text>
               </h2>
               <p>{{booking.hotel.address}} ∙ {{booking.hotel.price | currency }}</p>
-              <ion-badge color="success">{{ 'app.label.booked' | translate }}</ion-badge>
+              <ion-badge color="success">{{ 'app.label.booked'  }}</ion-badge>
             </ion-label>
           </ion-item>
 

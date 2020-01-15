@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>{{ 'app.pages.editprofile.title.header' | translate }}</ion-title>
+    <ion-title>{{ 'app.pages.editprofile.title.header'  }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -15,7 +15,7 @@
       <h2 color="light" class="ion-margin-bottom">Customer</h2>
       <ion-button icon-left color="secondary">
         <ion-icon name="photos"></ion-icon> 
-        {{ 'app.label.edit' | translate }} / {{ 'app.label.insertavatar' | translate }}
+        {{ 'app.label.edit'  }} / {{ 'app.label.insertavatar'  }}
       </ion-button>
     </ion-card-content>
   
@@ -25,26 +25,31 @@
 
           <ion-list class="ion-margin-bottom">
             <ion-list-header color="light">
-              <ion-label class="fw700">{{ 'app.label.userdata' | translate }}</ion-label>
+              <ion-label class="fw700">{{ 'app.label.userdata'  }}</ion-label>
             </ion-list-header>
 
             <ion-item>
-              <ion-label color="dark" position="stacked">{{ 'app.label.fullname' | translate }}:</ion-label>
-              <ion-input inputmode="text" placeholder="Ex..: Joe Doe" value="Kristy Zuniga"></ion-input>
+              <ion-label color="dark" position="stacked">{{ 'app.label.nombre'  }}:</ion-label>
+              <ion-input inputmode="text" placeholder="Ex..: Joe Doe" value="Kristy"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label color="dark" position="stacked">{{ 'app.label.apellido'  }}:</ion-label>
+              <ion-input inputmode="text" placeholder="Ex..: Joe Doe" value="Zuniga"></ion-input>
             </ion-item>
     
             <ion-item>
-              <ion-label color="dark" position="stacked">{{ 'app.label.email' | translate }}:</ion-label>
+              <ion-label color="dark" position="stacked">{{ 'app.label.email'  }}:</ion-label>
               <ion-input inputmode="email" placeholder="Ex.: joe@doe.com" value="kristypaolakpzh@gmail.com"></ion-input>
             </ion-item>
     
-            <ion-item>
-              <ion-label color="dark" position="stacked">{{ 'app.label.address' | translate }}:</ion-label>
+            <!-- <ion-item>
+              <ion-label color="dark" position="stacked">{{ 'app.label.address'  }}:</ion-label>
               <ion-input inputmode="text" placeholder="Ex.: Abey Road 5"></ion-input>
-            </ion-item>
+            </ion-item> -->
     
-            <ion-item>
-              <ion-label color="dark">{{ 'app.label.city' | translate }}</ion-label>
+            <!-- <ion-item>
+              <ion-label color="dark">{{ 'app.label.city'  }}</ion-label>
               <ion-select>
                 <ion-select-option value="nes">New York</ion-select-option>
                 <ion-select-option value="n64">Los Angeles</ion-select-option>
@@ -54,10 +59,10 @@
                 <ion-select-option value="snes">Tokyo</ion-select-option>
                 <ion-select-option value="snes">New Delhi</ion-select-option>
               </ion-select>
-            </ion-item>
+            </ion-item> -->
     
-            <ion-item>
-              <ion-label color="dark">{{ 'app.label.state' | translate }}</ion-label>
+            <!-- <ion-item>
+              <ion-label color="dark">{{ 'app.label.state'  }}</ion-label>
               <ion-select>
                 <ion-select-option value="nes">NY</ion-select-option>
                 <ion-select-option value="n64">CA</ion-select-option>
@@ -67,28 +72,29 @@
                 <ion-select-option value="snes">Kantō</ion-select-option>
                 <ion-select-option value="snes">Delhi</ion-select-option>
               </ion-select>
-            </ion-item>
+            </ion-item> -->
           </ion-list>
 
           <ion-list>
             <ion-radio-group>
               <ion-list-header color="light">
-                <ion-label class="fw700">{{ 'app.label.usertype' | translate }}</ion-label>
+                <ion-label class="fw700">{{ 'app.label.usertype'  }}</ion-label>
               </ion-list-header>
           
-              <ion-item>
+              <ion-item *ngIf="!logueado">
                 <ion-label color="primary">Customer</ion-label>
                 <ion-radio slot="start" value="customer" checked></ion-radio>
               </ion-item>
           
-              <ion-item>
+              
+              <ion-item *ngIf="logueado">
                 <ion-label color="primary">Travel Agent</ion-label>
                 <ion-radio slot="start" value="agent"></ion-radio>
               </ion-item>
             </ion-radio-group>
 
             <ion-item>
-              <ion-label class="text-1x">{{ 'app.pages.editprofile.avail.text' | translate }}</ion-label>
+              <ion-label class="text-1x">{{ 'app.pages.editprofile.avail.text'  }}</ion-label>
               <ion-checkbox></ion-checkbox>
             </ion-item>
           </ion-list>
@@ -97,7 +103,7 @@
       </ion-row>
     </ion-grid>
   
-    <ion-button class="ion-no-margin" size="large" expand="full" color="dark" (click)="sendData()">{{ 'app.label.edit' | translate }}</ion-button>
+    <ion-button class="ion-no-margin" size="large" expand="full" color="dark" (click)="sendData()">{{ 'app.label.edit'  }}</ion-button>
   </ion-card>
   
   <div class="ion-padding">

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { Platform, NavController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -7,7 +7,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { TranslateProvider } from './providers/translate/translate.service';
 import { TranslateService } from '@ngx-translate/core';
 import { environment } from '../environments/environment';
-
+import {Router} from '@angular/router'
 import { Pages } from './interfaces/pages';
 /**
  * Main Wrap App Component with starting methods
@@ -21,7 +21,7 @@ import { Pages } from './interfaces/pages';
   styleUrls: ['./app.component.scss']
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit {
   /**
    * Creates an Array instance with <Pages> interface that receives all menu list.
    *
@@ -45,7 +45,8 @@ export class AppComponent {
     private statusBar: StatusBar,
     private translate: TranslateProvider,
     private translateService: TranslateService,
-    public navCtrl: NavController
+    public navCtrl: NavController,
+    private _rute:Router
   ) {
     this.appPages = [
       {
@@ -53,36 +54,6 @@ export class AppComponent {
         url: '/home',
         direct: 'root',
         icon: 'home'
-      },
-      {
-        title: 'Booking List',
-        url: '/booking-list',
-        direct: 'forward',
-        icon: 'book'
-      },
-      {
-        title: 'Favorites',
-        url: '/favorites',
-        direct: 'forward',
-        icon: 'heart'
-      },
-      {
-        title: 'Rent a Car',
-        url: '/rentcar',
-        direct: 'forward',
-        icon: 'car'
-      },
-      {
-        title: 'Trip Activities',
-        url: '/activities',
-        direct: 'forward',
-        icon: 'beer'
-      },
-      {
-        title: 'Local Weather',
-        url: '/local-weather',
-        direct: 'forward',
-        icon: 'partly-sunny'
       },
       {
         title: 'About',
@@ -100,6 +71,16 @@ export class AppComponent {
 
     this.initializeApp();
   }
+
+  async ngOnInit(){
+    if(String(sessionStorage.getItem("user"))!='null' || String(sessionStorage.getItem("user"))!='undefined'){
+      console.log("#-")
+       this._rute.navigate(['/home']);
+    }else{
+      this._rute.navigate(['/login']);
+    }
+  }
+
 /**
  * Method that starts all Cordova and Factories
  *

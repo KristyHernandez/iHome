@@ -3,12 +3,12 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>{{ 'app.pages.carlist.title.header' | translate }}</ion-title>
+    <ion-title>{{ 'app.pages.carlist.title.header'  }}</ion-title>
   </ion-toolbar>
 
   <ion-toolbar color="dark">
     <ion-title>
-      <h6 class="ion-no-margin">({{ shops.length }}) {{ 'app.label.resultsf' | translate }}</h6>
+      <h6 class="ion-no-margin">({{ shops.length }}) {{ 'app.label.resultsf'  }}</h6>
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -25,14 +25,14 @@
         <h3>
           <ion-badge slot="start" color="secondary" class="rooms">
             <ion-icon name="book" color="tertiary"></ion-icon>
-            {{ 'app.label.daily' | translate }} {{ shop.price | currency }}
+            {{ 'app.label.daily'  }} {{ shop.price | currency }}
           </ion-badge>
         </h3>
         <p>
           <ion-icon name="person" color="tertiary"></ion-icon> {{ shop.passengers_from }}-{{ shop.passengers_to }} | <ion-icon name="briefcase" color="tertiary"></ion-icon> {{ shop.luggage }}
         </p>
         <ion-badge color="success">
-          {{ 'app.label.total' | translate }} <strong>{{ shop.price * numDays | currency }}</strong>
+          {{ 'app.label.total'  }} <strong>{{ shop.price * numDays | currency }}</strong>
         </ion-badge>
       </ion-label>
     </ion-item>

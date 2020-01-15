@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HOTELS } from "./mock-hotels";
+import { HOTELS } from './mock-hotels';
 
 @Injectable({
   providedIn: 'root'
@@ -8,9 +8,9 @@ import { HOTELS } from "./mock-hotels";
 export class HotelProvider {
     hotels: any;
     room: any;
-    favoriteCounter: number = 0;
+    favoriteCounter = 0;
     favorites: Array<any> = [];
-    bookingCounter: number = 0;
+    bookingCounter = 0;
     bookings: Array<any> = [];
 
     constructor() {
@@ -22,8 +22,8 @@ export class HotelProvider {
     }
 
     getItem(id) {
-        for (var i = 0; i < this.hotels.length; i++) {
-            if (this.hotels[i].id === parseInt(id)) {
+        for (let i = 0; i < this.hotels.length; i++) {
+            if (this.hotels[i].id === (id)) {
                 return this.hotels[i];
             }
         }
@@ -31,10 +31,10 @@ export class HotelProvider {
     }
 
     getRoom(hotelID, roomID) {
-        let hotel = this.getItem(hotelID);
+        const hotel = this.getItem(hotelID);
 
         for (let i = 0; i < hotel.rooms.length; i++) {
-            if (hotel.rooms[i].id === parseInt(roomID)) {
+            if (hotel.rooms[i].id === (roomID)) {
                 return hotel.rooms[i];
             }
         }
@@ -47,7 +47,7 @@ export class HotelProvider {
     }
 
     /////
-    //For Search and Favorites
+    // For Search and Favorites
     ////
     findAll() {
         return Promise.resolve(this.hotels);
@@ -58,7 +58,7 @@ export class HotelProvider {
     }
 
     findByName(searchKey: string) {
-        let key: string = searchKey.toUpperCase();
+        const key: string = searchKey.toUpperCase();
         return Promise.resolve(this.hotels.filter((property: any) =>
             (property.title + ' ' + property.address + ' ' + property.city + ' ' + property.description).toUpperCase().indexOf(key) > -1));
     }
@@ -97,7 +97,7 @@ export class HotelProvider {
         if (this.bookings && this.bookings.length > 0) {
             this.bookings.forEach((val, i) => {
                 if (val.hotel.id === hotel.id) {
-                    existb = true
+                    existb = true;
                 }
             });
         }
@@ -110,7 +110,7 @@ export class HotelProvider {
     }
 
     unfavorite(favorite) {
-        let index = this.favorites.indexOf(favorite);
+        const index = this.favorites.indexOf(favorite);
         if (index > -1) {
             this.favorites.splice(index, 1);
         }

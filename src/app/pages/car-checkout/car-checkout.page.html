@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>{{ 'app.pages.carcheckout.title.header' | translate }}</ion-title>
+    <ion-title>{{ 'app.pages.carcheckout.title.header'  }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -21,10 +21,10 @@
     <ion-card-content>
       <ion-badge slot="start" color="dark" class="rooms">
         <ion-icon name="checkmark" color="light"></ion-icon>
-        {{ 'app.label.freecancel' | translate }}
+        {{ 'app.label.freecancel'  }}
       </ion-badge>
       <ion-badge slot="end" color="success" class="price">
-        {{ 'app.label.totalvat' | translate }}
+        {{ 'app.label.totalvat'  }}
         <h2><strong>{{ car.price + 4 | currency:'$':'code' }}</strong></h2>
       </ion-badge>
     </ion-card-content>
@@ -38,13 +38,13 @@
       <h2><strong>{{ car.name }}</strong></h2>
       <h3>
         <ion-icon name="person" color="tertiary"></ion-icon>
-        <span margin-right>{{ car.passengers }} {{ 'app.label.passengers' | translate }}</span> | 
+        <span margin-right>{{ car.passengers }} {{ 'app.label.passengers'  }}</span> | 
         <ion-icon name="car" color="tertiary"></ion-icon>
-        {{ car.doors }} {{ 'app.label.doors' | translate }}
+        {{ car.doors }} {{ 'app.label.doors'  }}
       </h3>
       <ion-badge slot="start" color="tertiary">
         <ion-icon name="calendar" color="primary"></ion-icon>
-        {{ days }} {{ 'app.label.days' | translate }}
+        {{ days }} {{ 'app.label.days'  }}
       </ion-badge>
     </ion-label>
   </ion-item>
@@ -72,10 +72,10 @@
 
       <ion-segment [(ngModel)]="paymethods" color="light" class="ion-margin-bottom">
         <ion-segment-button value="creditcard">
-            {{ 'app.label.cc' | translate }}
+            {{ 'app.label.cc'  }}
         </ion-segment-button>
         <ion-segment-button value="paypal">
-            {{ 'app.label.pp' | translate }}
+            {{ 'app.label.pp'  }}
         </ion-segment-button>
       </ion-segment>
 
@@ -148,7 +148,7 @@
             <ion-col>
               <ion-button class="ion-margin-top" size="large" shape="round" expand="full" color="dark" (click)="makeBooking(hotel)">
                 <ion-icon slot="start" name="card"></ion-icon>
-                {{ 'app.button.checkout' | translate }} ({{ car.price + 4 | currency:'$':'code' }})
+                {{ 'app.button.checkout'  }} ({{ car.price + 4 | currency:'$':'code' }})
               </ion-button>
             </ion-col>
           </ion-row>
@@ -179,7 +179,7 @@
             <ion-col>
               <ion-button class="ion-margin-top" size="large" shape="round" expand="full" color="dark" (click)="makeBooking(hotel)">
                 <ion-icon slot="start" name="wallet"></ion-icon>
-                {{ 'app.button.checkout' | translate }} ({{ car.price + 4 | currency:'$':'code' }})
+                {{ 'app.button.checkout'  }} ({{ car.price + 4 | currency:'$':'code' }})
               </ion-button>
             </ion-col>
           </ion-row>

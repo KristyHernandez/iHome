@@ -16,7 +16,11 @@ const routes: Routes = [
   { path: 'local-weather', loadChildren: () => import('./pages/local-weather/local-weather.module').then(m => m.LocalWeatherPageModule) },
   { path: 'about', loadChildren: () => import('./pages/about/about.module').then(m => m.AboutPageModule) },
   { path: 'support', loadChildren: () => import('./pages/support/support.module').then(m => m.SupportPageModule) },
+
   { path: 'messages', loadChildren: () => import('./pages/messages/messages.module').then(m => m.MessagesPageModule) },
+  { path: 'upload', loadChildren: () => import('./pages/upload/upload.module').then(m => m.UploadPageModule) },
+  
+
   { path: 'message/:id', loadChildren: () => import('./pages/message/message.module').then(m => m.MessagePageModule) },
   { path: 'rentcar', loadChildren: () => import('./pages/rentcar/rentcar.module').then(m => m.RentcarPageModule) },
   { path: 'cars-list', loadChildren: () => import('./pages/cars-list/cars-list.module').then(m => m.CarsListPageModule) },

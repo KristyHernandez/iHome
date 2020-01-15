@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
-
+import { Component } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { TranslateModule } from '@ngx-translate/core';
 import { AgmCoreModule } from '@agm/core';
@@ -30,3 +30,12 @@ const routes: Routes = [
   declarations: [HotelDetailPage]
 })
 export class HotelDetailPageModule {}
+export class FormsPage {
+  todo = {
+    title: '',
+    description: ''
+  };
+  logForm(form) {
+    console.log(form.value)
+  }
+} 

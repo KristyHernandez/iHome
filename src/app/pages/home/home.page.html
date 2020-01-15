@@ -6,8 +6,8 @@
     <ion-title>
       <ion-text color="light">
 <!-- [placeholder]="translate.get('userlist.search')" -->
-<!-- {{ 'app.name' | translate }} -->
-        {{ 'app.name' | translate }} <ion-text color="secondary" class="fw700"> {{ 'app.version' | translate }}</ion-text>
+<!-- {{ 'app.name'  }} -->
+        IHome <ion-text color="secondary" class="fw700"> </ion-text>
       </ion-text>
     </ion-title>
     <ion-buttons slot="end">
@@ -40,7 +40,7 @@
             </ion-col>
           </ion-row>
 
-          <ion-row class="ion-no-padding ion-no-margin">
+          <!-- <ion-row class="ion-no-padding ion-no-margin">
             <ion-col size="6" class="ion-no-padding ion-no-margin ion-text-center br bb datetime-btn">
               <ion-item lines="none" class="ion-text-center">
                 <ion-label position="stacked">
@@ -60,18 +60,18 @@
                 <ion-datetime class="text-primary" displayFormat="MM/DD/YYYY" pickerFormat="YYYY-MM-DD" min="2019" max="2020" [(ngModel)]="checkout.date"></ion-datetime>
               </ion-item>
             </ion-col>
-          </ion-row>
+          </ion-row> -->
         </ion-grid>
       </ion-card-content>
       <ion-card-content>
 
         <ion-row class="adjust-qts">
-          <ion-col size="4" class="ion-no-padding br bb bl bt">
+          <ion-col size="3" class="ion-no-padding br bb bl bt">
               <ion-item>
                 <ion-label class="ion-no-padding text08">
-                    <ion-text color="dark">{{ 'app.pages.home.label.rooms' | translate }}</ion-text>
+                    <ion-text color="dark">Habitaciones</ion-text>
                 </ion-label>
-                <ion-select [(ngModel)]="rooms" cancelText="Cancel" okText="OK" color="primary"  class="ion-no-padding text1 text-dark">
+                <ion-select [(ngModel)]="data.rooms" cancelText="Cancel" okText="OK" color="primary"  class="ion-no-padding text1 text-dark">
                   <ion-select-option value="1" selected="true">1</ion-select-option>
                   <ion-select-option value="2">2</ion-select-option>
                   <ion-select-option value="3">3</ion-select-option>
@@ -84,37 +84,40 @@
                 </ion-select>
               </ion-item>
           </ion-col>
-          <ion-col size="4" class="ion-no-padding br bb bt">
+          <ion-col size="3" class="ion-no-padding br bb bt">
 
-              
+
 
 <ion-list>
-    <ion-list-header>Garaje</ion-list-header>
-  
+    <!-- <ion-list-header>Garaje</ion-list-header> -->
+
     <ion-item>
       <ion-label>Garaje</ion-label>
-      <ion-select placeholder="Select One">
-        <ion-select-option value="s">Si</ion-select-option>
-        <ion-select-option value="n">No</ion-select-option>
+      <ion-select [(ngModel)]="data.garaje">
+        <ion-select-option value="true">Si</ion-select-option>
+        <ion-select-option value="false">No</ion-select-option>
       </ion-select>
     </ion-item>
-  
-    <ion-item>
+
+
+
+    <!-- <ion-item>
       <ion-label>Mascotas</ion-label>
       <ion-select value="brown" okText="Okay" cancelText="Dismiss">
         <ion-select-option value="Si">Si</ion-select-option>
         <ion-select-option value="No">No</ion-select-option>
-        
+
       </ion-select>
-    </ion-item>
-  
+    </ion-item> -->
+
   </ion-list>
-  
-  
+
+
+
 
               <ion-item hidden="true">
                 <ion-label class="ion-no-padding text-primary text08">
-                  <ion-text color="dark">{{ 'app.pages.home.label.adults' | translate }}</ion-text>
+                  <ion-text color="dark">{{ Adultlos  }}</ion-text>
                 </ion-label>
                 <ion-select [(ngModel)]="adults" cancelText="Cancel" okText="OK" class="ion-no-padding text1 text-dark">
                   <ion-select-option value="1" selected="true">1</ion-select-option>
@@ -130,13 +133,13 @@
               </ion-item>
 
           </ion-col>
-          <ion-col size="4" class="ion-no-padding bb bt br">
+          <ion-col size="3" class="ion-no-padding bb bt br">
 
               <ion-item>
                 <ion-label class="ion-no-padding ion-no-margin text-primary text08">
-                  <ion-text color="dark">{{ 'app.pages.home.label.children' | translate }}</ion-text>
+                  <ion-text color="dark">Niños</ion-text>
                 </ion-label>
-                <ion-select [(ngModel)]="children" cancelText="Cancel" okText="OK" (ngModelChange)="childrenArr($event)" class="ion-no-padding text1 text-dark">
+                <ion-select [(ngModel)]="data.children" cancelText="Cancel" okText="OK" (ngModelChange)="childrenArr($event)" class="ion-no-padding text1 text-dark">
                   <ion-select-option value="0" selected="true">0</ion-select-option>
                   <ion-select-option value="1">1</ion-select-option>
                   <ion-select-option value="2">2</ion-select-option>
@@ -151,23 +154,35 @@
               </ion-item>
 
           </ion-col>
+          <ion-col>
+            <ion-list>
+              <ion-item>
+                <ion-label>Mascotas</ion-label>
+                <ion-select [(ngModel)]="data.mascotas" value="brown" okText="Okay" cancelText="Dismiss">
+                  <ion-select-option value="Si">Si</ion-select-option>
+                  <ion-select-option value="No">No</ion-select-option>
+
+                </ion-select>
+              </ion-item>
+            </ion-list>
+          </ion-col>
           <ion-col size="6" class="ion-no-padding">
-        
+
           </ion-col>
         </ion-row>
-        
+
         <ion-row *ngIf="children > 0" class="animated fadeIn">
           <ion-col size="12" class="ion-padding-vertical">
             <ion-text color="primary" class="ion-text-center">
-              <h3 class="bold" *ngIf="children > 0 && children < 2">{{ 'app.pages.home.label.childage' | translate }}</h3>
-              <h3 class="bold" *ngIf="children > 1">{{ 'app.pages.home.label.childrenages' | translate }}</h3>
+              <h3 class="bold" *ngIf="children > 0 && children < 2">{{ 'app.pages.home.label.childage'  }}</h3>
+              <h3 class="bold" *ngIf="children > 1">{{ 'app.pages.home.label.childrenages'  }}</h3>
             </ion-text>
           </ion-col>
           <ion-col size="6" class="ion-no-padding bb bt br bl" *ngFor="let child of childs; let i = index">
 
               <ion-item>
                 <ion-label class="ion-no-padding ion-no-margin text-primary text08">
-                  <ion-text color="dark">{{ 'app.pages.home.label.child' | translate }} {{ i + 1 }}</ion-text>
+                  <ion-text color="dark">{{ 'app.pages.home.label.child'  }} {{ i + 1 }}</ion-text>
                 </ion-label>
                 <ion-select cancelText="Cancel" okText="OK" class="ion-no-padding text08 text-dark">
                   <ion-select-option value="0" selected="true">0</ion-select-option>
@@ -188,14 +203,14 @@
                 </ion-select>
               </ion-item>
 
-          </ion-col>         
+          </ion-col>
         </ion-row>
-        <ion-row class="adjust-qts">
+        <!-- <ion-row class="adjust-qts">
           <ion-col size="12" class="ion-no-padding ion-margin-top ion-margin-bottom bb bt br bl">
 
               <ion-item>
                 <ion-label class="ion-no-padding ion-no-margin text-primary text08">
-                  <ion-text color="dark">{{ 'app.pages.home.label.pamenities' | translate }}</ion-text>
+                  <ion-text color="dark">{{ 'app.pages.home.label.pamenities'  }}</ion-text>
                 </ion-label>
                 <ion-select multiple="true" cancelText="Cancel" okText="OK" class="ion-no-padding text08 text-dark">
                   <ion-select-option value="0" selected="true">Wifi</ion-select-option>
@@ -206,15 +221,78 @@
                 </ion-select>
               </ion-item>
 
-          </ion-col>          
-        </ion-row>
+          </ion-col>
+        </ion-row> -->
 
+        <ion-row class="adjust-qts">
+            <ion-col size="3" class="ion-no-padding br bb bl bt">
+                <ion-list>
+              <ion-item>
+                <ion-label>Sala</ion-label>
+                <ion-select value="brown" okText="Okay" cancelText="Dismiss">
+                  <ion-select-option value="Si">Si</ion-select-option>
+                  <ion-select-option value="No">No</ion-select-option>
+
+                </ion-select>
+              </ion-item>
+            </ion-list>
+            </ion-col>
+
+            <ion-col size="3" class="ion-no-padding br bb bl bt">
+                <ion-list>
+              <ion-item>
+                <ion-label>Amueblado</ion-label>
+                <ion-select value="brown" okText="Okay" cancelText="Dismiss">
+                  <ion-select-option value="Si">Si</ion-select-option>
+                  <ion-select-option value="No">No</ion-select-option>
+
+                </ion-select>
+              </ion-item>
+            </ion-list>
+            </ion-col>
+
+            <ion-col size="3" class="ion-no-padding br bb bl bt">
+                <ion-list>
+              <ion-item>
+                <ion-label>Cocina</ion-label>
+                <ion-select value="brown" okText="Okay" cancelText="Dismiss">
+                  <ion-select-option value="Si">Si</ion-select-option>
+                  <ion-select-option value="No">No</ion-select-option>
+
+                </ion-select>
+              </ion-item>
+            </ion-list>
+            </ion-col>
+
+
+            <ion-col size="3" class="ion-no-padding br bb bl bt">
+
+            <ion-list>
+              <ion-item>
+                <ion-label>Lavanderia</ion-label>
+                <ion-select value="brown" okText="Okay" cancelText="Dismiss">
+                  <ion-select-option value="Si">Si</ion-select-option>
+                  <ion-select-option value="No">No</ion-select-option>
+
+                </ion-select>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+
+
+        </ion-row>
         <ion-row>
           <ion-col>
             <ion-button icon-left shape="round" size="full" color="primary" (click)="viewHotels()">
               <ion-ripple-effect></ion-ripple-effect>
               <ion-icon name="search"></ion-icon>
-              {{ 'app.button.search' | translate }}
+              Buscar
+            </ion-button>
+
+            <ion-button icon-left shape="round" size="full" color="primary" (click)="uploadImg()" *ngIf="login==true">
+              <ion-ripple-effect></ion-ripple-effect>
+              <ion-icon name="Subir Imagenes"></ion-icon>
+              Subir fotografia
             </ion-button>
           </ion-col>
         </ion-row>
@@ -222,7 +300,7 @@
     </ion-card>
 
     <ion-text color="primary">
-      <h3><ion-icon size="small" color="dark" name="map"></ion-icon> {{ 'app.pages.home.title.nearyou' | translate }}</h3>
+      <h3><ion-icon size="small" color="dark" name="map"></ion-icon> Ubicacion</h3>
     </ion-text>
 
     <ion-card class="animated fadeIn" *ngIf="miPosicion.latitud != null">
@@ -238,11 +316,11 @@
                       <ion-text color="primary">
                         <h2><strong>{{ hotel.name }}</strong></h2>
                       </ion-text>
-                      
+
                       <h3>
                         <ion-badge slot="start" color="secondary" class="rooms">
                           <ion-icon name="book" color="tertiary"></ion-icon>
-                          {{ hotel.numb_available_rooms }} {{ 'app.pages.home.label.availrooms' | translate }}
+                          {{ hotel.numb_available_rooms }} {{ 'app.pages.home.label.availrooms'  }}
                         </ion-badge>
                       </h3>
                       <ion-badge color="warning">
@@ -250,7 +328,7 @@
                       </ion-badge>
                     </ion-label>
                   </ion-item>
-                </agm-info-window>            
+                </agm-info-window>
           </agm-marker>
         </agm-map>
       </ion-card-content>
@@ -259,7 +337,7 @@
     <hr class="bg-tertiary">
 
     <ion-text color="primary">
-      <h3><ion-icon size="small" color="dark" name="bookmark"></ion-icon> {{ 'app.pages.home.title.recommended' | translate }}</h3>
+      <h3><ion-icon size="small" color="dark" name="bookmark"></ion-icon> Sugerencias</h3>
     </ion-text>
 
     <ion-slides pager="true" class="ion-margin-bottom">
@@ -280,13 +358,13 @@
                 <ion-card-content>
                   <ion-badge slot="start" color="dark" class="rooms">
                     <ion-icon name="book" color="secondary"></ion-icon>
-                    {{ hotel.numb_available_rooms }} {{ 'app.pages.home.label.availrooms' | translate }}
+                    {{ hotel.numb_available_rooms }} {{ 'app.pages.home.label.availrooms'  }}
                   </ion-badge>
 
                   <ion-badge slot="end" color="success" class="price">
-                    <h3><strong>{{ hotel.price | currency:'$':'code' }}</strong></h3>  
-                  </ion-badge> 
-                </ion-card-content>               
+                    <h3><strong>{{ hotel.price | currency:'$':'code' }}</strong></h3>
+                  </ion-badge>
+                </ion-card-content>
               </ion-card>
             </ion-col>
           </ion-row>
@@ -298,7 +376,7 @@
     <hr class="bg-tertiary">
 
     <ion-text color="primary">
-      <h3><ion-icon size="small" color="dark" name="bookmarks"></ion-icon> {{ 'app.pages.home.title.latestbookings' | translate }}</h3>
+      <h3><ion-icon size="small" color="dark" name="bookmarks"></ion-icon> {{ 'app.pages.home.title.latestbookings'  }}</h3>
     </ion-text>
 
     <ion-card>
@@ -312,12 +390,12 @@
                 <h3>
                   <ion-badge slot="start" color="secondary" class="rooms">
                     <ion-icon name="book" color="tertiary"></ion-icon>
-                    {{ hotel.numb_available_rooms }} {{ 'app.pages.home.label.availrooms' | translate }}
-                  </ion-badge>                
+                    {{ hotel.numb_available_rooms }} {{ 'app.pages.home.label.availrooms'  }}
+                  </ion-badge>
                 </h3>
                 <ion-badge color="warning">
                     <ion-icon name="star"></ion-icon> {{ hotel.rating }}
-                  </ion-badge>           
+                  </ion-badge>
               </ion-label>
             </ion-item>
       </ion-list>
@@ -332,22 +410,22 @@
   <ion-toolbar color="primary">
     <ion-grid class="ion-no-padding">
         <ion-row>
-          <ion-col size="4" class="ion-no-padding">
+          <!-- <ion-col size="4" class="ion-no-padding">
             <ion-button size="small" shape="round" expand="full" fill="clear" color="tertiary" routerLink="/rentcar">
               <ion-icon slot="start" name="car"></ion-icon>
-              {{ 'app.pages.menu.rentacar' | translate }}
+              {{ 'app.pages.menu.rentacar'  }}
             </ion-button>
           </ion-col>
           <ion-col size="4" class="ion-no-padding">
             <ion-button size="small" shape="round" expand="full" fill="clear" color="tertiary" routerLink="/activities">
               <ion-icon slot="start" name="beer"></ion-icon>
-              {{ 'app.pages.menu.activitiestab' | translate }}
+              {{ 'app.pages.menu.activitiestab'  }}
             </ion-button>
-          </ion-col>
+          </ion-col> -->
           <ion-col size="4" class="ion-no-padding">
             <ion-button size="small" shape="round" expand="full" fill="clear" color="light" (click)="settings()">
               <ion-icon slot="start" name="cog"></ion-icon>
-              {{ 'app.pages.menu.settings' | translate }}
+              {{ 'app.pages.menu.settings'  }}
             </ion-button>
           </ion-col>
         </ion-row>

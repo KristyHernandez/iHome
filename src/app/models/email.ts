@@ -1,7 +1,7 @@
-import { usuario } from './usuario';
+import { user1 } from './usuario';
 export class user_email{
 id_user:number;
 email: string;
-usuario_:usuario;
+usuario_: string;
 
 }

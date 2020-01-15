@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { NavController, IonSlides, MenuController } from '@ionic/angular';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-walkthrough',
@@ -10,6 +11,7 @@ import { NavController, IonSlides, MenuController } from '@ionic/angular';
 
 export class WalkthroughPage implements OnInit {
   @ViewChild(IonSlides, { static: true }) slides: IonSlides;
+  logueado = false;
   showSkip = true;
   slideOpts = {
     effect: 'flip',
@@ -38,7 +40,8 @@ export class WalkthroughPage implements OnInit {
   constructor(
     public navCtrl: NavController,
     public menuCtrl: MenuController,
-    public router: Router
+    public router: Router,
+    public storage: Storage
   ) {
   }
 
@@ -53,7 +56,7 @@ export class WalkthroughPage implements OnInit {
     this.slides.slideNext(1000, false);
   }
 
-	onSlidePrev() {
+  onSlidePrev() {
     this.slides.slidePrev(300);
   }
 
@@ -62,11 +65,14 @@ export class WalkthroughPage implements OnInit {
   // }
 
   openHomePage() {
+   this.storage.set('logueado', false);
+
     this.navCtrl.navigateRoot('/home');
     // this.router.navigateByUrl('/tabs/(home:home)');
   }
 
   openLoginPage() {
+    this.storage.set('logueado', true);
     this.navCtrl.navigateForward('/login');
   }
 

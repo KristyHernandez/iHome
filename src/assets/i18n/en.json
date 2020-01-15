@@ -4,17 +4,19 @@
     "app.description": "IHome",
 
     "app.button.search": "Buscar",
+    "app.button.subirFoto": "Subir Foto",
+    "app.button.back": "Regresar a perfil",
     "app.button.checkout": "Checkout",
     "app.button.booknow": "Book Now",
     "app.button.callus": "Llamanos",
     "app.button.fav": "Favoritos",
     "app.button.share": "Compartir",
-    "app.button.signin": "Sign in",
+    "app.button.signin": "Iniciar Sesion",
     "app.button.signup": "Registrar",
 
     "app.label.booked": "Booked",
     "app.label.book": "Book",
-    "app.label.resultsf": "Resultado Encontrado",
+    "app.label.resultsf": "Resultados Encontrados",
     "app.label.cc": "Credit Card",
     "app.label.ch": "Card Holder",
     "app.label.cn": "Card Number",
@@ -42,12 +44,10 @@
     "app.label.usertype": "User Type",
     "app.label.edit": "Editar",
     "app.label.insertavatar": "Insert Avatar",
-    "app.label.name": "Nombre",
-    "app.label.fullname": "Nombre Completo",
-    "app.label.address": "Direccion",
-    "app.label.city": "Ciudad",
-    "app.label.state": "Estado",
+    "app.label.nombre": "Nombre",
+    "app.label.apellido": "Apellido",
     "app.label.email": "Email",
+    "app.label.usuario": "Usuario",
     "app.label.password": "Contraseña",
     "app.label.details": "Detalles",
     "app.label.rooms": "Apartamentos",
@@ -55,7 +55,7 @@
     "app.label.about": "Acerca de",
     "app.label.amenities": "Amenities",
     "app.label.features": "Features",
-    "app.label.availrooms": "Available rooms",
+    "app.label.availrooms": "Cuartos Disponibles",
     "app.label.selectlocal": "Select Local",
 
     "app.label.errors.field": "Este campo es requerido",
@@ -69,7 +69,7 @@
     "app.pages.extras.charts.title.header": "Charts",
     "app.pages.extras.post.title.header": "Blog Post",
 
-    "app.pages.menu.home": "Home",
+    "app.pages.menu.home": "Pagina Principal",
     "app.pages.menu.booking": "Booking List",
     "app.pages.menu.favorites": "Favorites",
     "app.pages.menu.rentacar": "Rent a Car",
@@ -91,7 +91,7 @@
     "app.pages.home.label.childage": "Child's age",
     "app.pages.home.label.childrenages": "Children's ages",
     "app.pages.home.label.pamenities": "Preferred Amenities",
-    "app.pages.home.label.availrooms": "Available rooms",
+    "app.pages.home.label.availrooms": "Cuartos Disponibles",
 
     "app.pages.home.title.recommended": "Recommended Hotels",
     "app.pages.home.title.latestbookings": "Latest Bookings",
@@ -127,7 +127,7 @@
 
     "app.pages.hotelcheckout.title.header": "Hotel Checkout",
 
-    "app.pages.hotellist.title.header": "Hotel List",
+    "app.pages.hotellist.title.header": "Lista de Apartamentos",
 
     "app.pages.localweather.title.header": "Local Weather",
     "app.pages.localweather.label.temp": "Temperature",

@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>{{ 'app.pages.activitydetail.title.header' | translate }}</ion-title>
+    <ion-title>{{ 'app.pages.activitydetail.title.header'  }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -32,11 +32,11 @@
       </ion-badge>
       <ion-badge slot="end" color="tertiary" *ngIf="trip.free_cancellation === 1">
         <ion-icon name="checkbox-outline"></ion-icon>
-        {{ 'app.label.freecancel' | translate }}
+        {{ 'app.label.freecancel'  }}
       </ion-badge>
       <ion-badge slot="end" color="tertiary" *ngIf="trip.electric_voucher === 1">
         <ion-icon name="list-box"></ion-icon>
-        {{ 'app.label.voucher' | translate }}
+        {{ 'app.label.voucher'  }}
       </ion-badge>
     </ion-card-content>
     <ion-list>
@@ -50,7 +50,7 @@
   <ion-card class="bg-white">
     <ion-card-content>
       <ion-card-title>
-        <ion-text color="primary"><strong>{{ 'app.label.description' | translate }}</strong></ion-text>
+        <ion-text color="primary"><strong>{{ 'app.label.description'  }}</strong></ion-text>
       </ion-card-title>
   
       <p>
@@ -61,7 +61,7 @@
     </ion-card-content>
     <ion-card-content>
         <ion-card-title>
-          <ion-text color="primary"><strong>{{ 'app.label.location' | translate }}</strong></ion-text>
+          <ion-text color="primary"><strong>{{ 'app.label.location'  }}</strong></ion-text>
         </ion-card-title>
     
         <p>
@@ -109,7 +109,7 @@
           </ion-col>
         </ion-row>
       </ion-grid>
-      <ion-button shape="round" size="full" color="success" tappable (click)="checkout(trip.id)">{{'app.button.booknow' | translate }} {{ adults * trip.price_adult +
+      <ion-button shape="round" size="full" color="success" tappable (click)="checkout(trip.id)">{{'app.button.booknow'  }} {{ adults * trip.price_adult +
         children * trip.price_child | currency }}
       </ion-button>
     </ion-card-content>

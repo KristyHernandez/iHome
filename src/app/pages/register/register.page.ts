@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavController, MenuController, LoadingController } from '@ionic/angular';
 import { UsersService } from '../../providers/usuarios/users.service';
-import { usuario } from '../../models/usuario';
+import { user1 } from '../../models/usuario';
 
 @Component({
   selector: 'app-register',
@@ -25,9 +25,16 @@ export class RegisterPage implements OnInit {
 
   ngOnInit() {
     this.onRegisterForm = this.formBuilder.group({
-      'fullName': [null, Validators.compose([
+      'nombre': [null, Validators.compose([
         Validators.required
       ])],
+      'apellido': [null, Validators.compose([
+        Validators.required
+      ])],
+      'usuario': [null, Validators.compose([
+        Validators.required
+      ])],
+
       'email': [null, Validators.compose([
         Validators.required
       ])],

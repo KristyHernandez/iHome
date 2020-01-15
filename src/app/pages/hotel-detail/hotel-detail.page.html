@@ -18,14 +18,14 @@
   <div class="ion-padding-horizontal">
 
     <ion-segment [(ngModel)]="hotelSegment" color="primary">
-      <ion-segment-button value="details">
-        <ion-label>{{ 'app.label.details' | translate }}</ion-label>
+      <ion-segment-button value="Detalles">
+        <ion-label>{{ 'app.label.details'  }}</ion-label>
       </ion-segment-button>
-      <ion-segment-button value="rooms">
-        <ion-label>{{ 'app.label.rooms' | translate }}</ion-label>
+      <ion-segment-button value="Cuartos">
+        <ion-label>{{ 'app.label.rooms'  }}</ion-label>
       </ion-segment-button>
       <ion-segment-button value="rating">
-        <ion-label>{{ 'app.label.rating' | translate }}</ion-label>
+        <ion-label>{{ 'app.label.rating'  }}</ion-label>
       </ion-segment-button>
     </ion-segment>
     
@@ -42,7 +42,7 @@
           <ion-card-content class="bg-white">
             <h2>
               <ion-text color="primary">
-                <strong>{{ 'app.label.address' | translate }}</strong>
+                <strong>{{ 'app.label.address'  }}</strong>
               </ion-text>
             </h2>
             <p>{{hotel.address}}</p>
@@ -52,7 +52,7 @@
         <ion-card class="ion-no-margin ion-margin-bottom bg-white animated fadeIn">
           <ion-card-content>
             <ion-card-title>
-              <ion-text color="primary">{{ 'app.label.about' | translate }}</ion-text>
+              <ion-text color="primary">{{ 'app.label.about'  }}</ion-text>
             </ion-card-title>
           
             <ion-text color="dark" class="ion-margin-bottom">
@@ -68,7 +68,7 @@
         <ion-card class="ion-no-margin ion-margin-bottom bg-white animated fadeIn">
           <ion-card-content>
             <ion-card-title class="ion-margin-bottom">
-              <ion-text color="primary">{{ 'app.label.amenities' | translate }}</ion-text>
+              <ion-text color="primary">{{ 'app.label.amenities'  }}</ion-text>
             </ion-card-title>
 
             <ion-chip class="ion-margin-left" color="primary" *ngFor="let services of hotel.services">
@@ -81,7 +81,7 @@
         <ion-card class="ion-no-margin ion-margin-bottom bg-white animated fadeIn">
           <ion-card-content>
             <ion-card-title class="ion-margin-bottom">
-              <ion-text color="primary">{{ 'app.label.features' | translate }}</ion-text>
+              <ion-text color="primary">{{ 'app.label.features'  }}</ion-text>
             </ion-card-title>
         
             <ion-text color="dark">
@@ -114,17 +114,32 @@
               <ion-text color="primary">{{room.name}}</ion-text>
             </ion-card-title>
 
-            <ion-badge slot="start" color="primary" class="ion-margin-bottom">{{ room.numb_available_rooms }} {{ 'app.label.availrooms' | translate }}</ion-badge>
+            <ion-badge slot="start" color="primary" class="ion-margin-bottom">{{ room.numb_available_rooms }} {{ 'app.label.availrooms'  }}</ion-badge>
             <p><ion-text color="primary">{{room.room_info}}</ion-text></p>
             
             <ion-button size="large" shape="round" expand="full" color="success" (click)="checkout(hotel.id, room.id)">
               <ion-icon slot="start" name="book"></ion-icon>
-              {{ 'app.label.book' | translate }} ({{ room.price | currency:'$':'code' }})
+              {{ 'app.label.book'  }} ({{ room.price | currency:'$':'code' }})
             </ion-button>
           </ion-card-content>
 
         </ion-card>
       </div>
+       <!-- Default textarea -->
+<!-- <ion-textarea></ion-textarea> -->
+
+<!-- Textarea in an item with a placeholder -->
+ <!-- <ion-item> 
+  <ion-textarea placeholder="Enter more information here..."></ion-textarea>
+</ion-item>  -->
+
+<!-- Textarea in an item with a floating label -->
+
+ <!-- <ion-item>
+ <ion-label position="floating">Comentarios</ion-label> 
+  <ion-textarea></ion-textarea>
+ </ion-item>   -->
+
 
       <div *ngSwitchCase="'rating'">
         
@@ -134,7 +149,7 @@
               <ion-card class="ion-no-margin bg-white animated fadeIn">
                 <ion-card-content class="ion-text-center">
                   <h3>
-                    <ion-text color="primary">{{ 'app.label.average' | translate }}</ion-text>
+                    <ion-text color="primary">{{ 'app.label.average'  }}</ion-text>
                   </h3>
                   <h1 class="ion-no-margin">
                     <ion-text color="primary">
@@ -197,19 +212,19 @@
             <ion-col size="4" class="ion-no-padding">
               <ion-button size="small" shape="round" expand="full" fill="clear" color="tertiary" (click)="favorite(hotel)">
                 <ion-icon slot="start" name="heart"></ion-icon>
-                {{ 'app.button.fav' | translate }}
+                {{ 'app.button.fav'  }}
               </ion-button>
             </ion-col>
             <ion-col size="4" class="ion-no-padding">
               <ion-button size="small" shape="round" expand="full" fill="clear" color="tertiary" href="tel:+13174562564">
                 <ion-icon slot="start" name="call"></ion-icon>
-                {{ 'app.button.callus' | translate }}
+                {{ 'app.button.callus'  }}
               </ion-button>
             </ion-col>
             <ion-col size="4" class="ion-no-padding">
               <ion-button size="small" shape="round" expand="full" fill="clear" color="light" (click)="share()">
                 <ion-icon slot="start" name="share"></ion-icon>
-                {{ 'app.button.share' | translate }}
+                {{ 'app.button.share'  }}
               </ion-button>
             </ion-col>
           </ion-row>

@@ -16,16 +16,26 @@ export class HomePage {
   searchQuery: String = '';
   items: string[];
   showItems: Boolean = false;
-  rooms: any;
-  adults: any;
 
-  childs: any = 0;
   children: number;
   hotellocation: string;
   miPosicion = {
     latitud:null,
     longitud:null
   }
+  data:any={
+    garaje:null,
+    rooms: null,
+    children:null,
+    mascotas:null,
+    sala:null,
+    cocina:null,
+    lavanderia:null,
+    amueblado:null,
+  }
+
+
+  login:boolean=false
 
   agmStyles: any[] = environment.agmStyles;
 
@@ -56,12 +66,12 @@ export class HomePage {
       let data = await this.users.login();
     console.log(data);
     }, 500);
-    
-    
+
+
   }
 
     ngAfterViewInit(){
-    
+
   }
 
    async ionViewWillEnter() {
@@ -71,11 +81,17 @@ export class HomePage {
       this.miPosicion.latitud = resp.coords.latitude
       this.miPosicion.longitud = resp.coords.longitude
       console.log(this.miPosicion);
-      
+
      }).catch((error) => {
        console.log('Error getting location', error);
      });
-     
+
+     if(String(sessionStorage.getItem("user"))!='null' || String(sessionStorage.getItem("user"))!='undefined'){
+       this.login=true
+     }else{
+       this.login=false
+     }
+
   }
 
   initializeItems() {
@@ -154,5 +170,13 @@ export class HomePage {
   messages() {
     this.navCtrl.navigateForward('messages');
   }
+  uploadImg() {
+    // this.navCtrl.navigateForward('upload');
+    let resp:boolean=true
+    if(resp==true){
 
+    }else{
+
+    }
+  }
 }

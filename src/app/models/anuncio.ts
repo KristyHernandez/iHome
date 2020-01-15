@@ -1,6 +1,6 @@
-import { usuario } from './usuario';
+import { user1 } from './usuario';
 import { colonia } from "./colonia";
-export class anuncio{
+export class anuncio {
 id_anuncio: number;
 anuncio: string;
 descripcion: string;
@@ -22,7 +22,7 @@ amueblado: boolean;
 sala: boolean;
 lavanderia: boolean;
 precio: number;
-usuario_: usuario;
+usuario_: string;
 colonia_: colonia;
 
 

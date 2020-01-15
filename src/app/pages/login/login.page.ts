@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavController, MenuController, ToastController, AlertController, LoadingController } from '@ionic/angular';
 import { TranslateProvider } from '../../providers';
+import { UsersService } from '../../providers/usuarios/users.service';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,8 @@ export class LoginPage implements OnInit {
     public alertCtrl: AlertController,
     public loadingCtrl: LoadingController,
     private translate: TranslateProvider,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private _api:UsersService
   ) { }
 
   ionViewWillEnter() {
@@ -90,6 +92,16 @@ export class LoginPage implements OnInit {
 
   goToHome() {
     this.navCtrl.navigateRoot('/home');
+  }
+
+  async loginUser(){
+    console.log(this.onLoginForm.value)
+    let resp:any =await this._api.login(this.onLoginForm.value)
+       if(resp.email==this.onLoginForm.value.email){
+       sessionStorage.setItem("user",JSON.stringify(resp))
+       this.navCtrl.navigateRoot('/home');
+     }
+
   }
 
 }

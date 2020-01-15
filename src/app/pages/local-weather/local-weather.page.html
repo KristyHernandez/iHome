@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>{{ 'app.pages.localweather.title.header' | translate }}</ion-title>
+    <ion-title>{{ 'app.pages.localweather.title.header'  }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -14,7 +14,7 @@
   
       <ion-item>
         <ion-label class="text-1x fw700">
-          <ion-text color="light">{{ 'app.label.selectlocal' | translate }}</ion-text>
+          <ion-text color="light">{{ 'app.label.selectlocal'  }}</ion-text>
         </ion-label>
         <ion-select [(ngModel)]="location" (ionChange)="getWeather(location)">
           <ion-select-option *ngFor="let location of locationList" [value]="location">
@@ -42,19 +42,19 @@
           <ion-list>
     
             <ion-item>
-              <strong>{{ 'app.pages.localweather.label.temp' | translate }}: </strong> {{weather.weather[0].main}}
+              <strong>{{ 'app.pages.localweather.label.temp'  }}: </strong> {{weather.weather[0].main}}
             </ion-item>
             <ion-item>
-              <strong>{{ 'app.pages.localweather.label.humidity' | translate }}: </strong> {{weather.main.humidity}}
+              <strong>{{ 'app.pages.localweather.label.humidity'  }}: </strong> {{weather.main.humidity}}
             </ion-item>
             <ion-item>
-              <strong>{{ 'app.pages.localweather.label.dewpoint' | translate }}: </strong> {{weather.main.pressure}}
+              <strong>{{ 'app.pages.localweather.label.dewpoint'  }}: </strong> {{weather.main.pressure}}
             </ion-item>
             <ion-item>
-              <strong>{{ 'app.pages.localweather.label.visibility' | translate }}: </strong> {{weather.visibility}}
+              <strong>{{ 'app.pages.localweather.label.visibility'  }}: </strong> {{weather.visibility}}
             </ion-item>
             <ion-item>
-              <strong>{{ 'app.pages.localweather.label.heatindex' | translate }}: </strong> {{weather.clouds.all}}
+              <strong>{{ 'app.pages.localweather.label.heatindex'  }}: </strong> {{weather.clouds.all}}
             </ion-item>
     
           </ion-list>

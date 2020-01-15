@@ -6,8 +6,8 @@
       <div class="logo"></div>
       <h4 class="ion-no-margin">
         <ion-text color="light">
-          {{ 'app.name' | translate }}
-          <ion-text color="secondary" class="fw700"> {{ 'app.version' | translate }}</ion-text>
+          {{ 'app.name'  }}
+          <ion-text color="secondary" class="fw700"> {{ 'app.version'  }}</ion-text>
         </ion-text>
       </h4>
     </div>
@@ -17,11 +17,37 @@
       <ion-item class="ion-no-padding animated fadeInUp">
         <ion-label position="floating">
           <ion-icon name="mail" item-start></ion-icon>
-          Full Name
+          Nombre
         </ion-label>
-        <ion-input color="secondary" type="text" formControlName="fullName"></ion-input>
+        <ion-input color="secondary" type="text" formControlName="nombre"></ion-input>
       </ion-item>
-      <p class="text08" *ngIf="onRegisterForm.get('fullName').touched && onRegisterForm.get('fullName').hasError('required')">
+      <p class="text08" *ngIf="onRegisterForm.get('nombre').touched && onRegisterForm.get('nombre').hasError('required')">
+        <ion-text color="danger">
+          This field is required
+        </ion-text>
+      </p>
+
+      <ion-item class="ion-no-padding animated fadeInUp">
+        <ion-label position="floating">
+          <ion-icon name="mail" item-start></ion-icon>
+          Apellido
+        </ion-label>
+        <ion-input color="secondary" type="text" formControlName="apellido"></ion-input>
+      </ion-item>
+      <p class="text08" *ngIf="onRegisterForm.get('apellido').touched && onRegisterForm.get('apellido').hasError('required')">
+        <ion-text color="danger">
+          This field is required
+        </ion-text>
+      </p>
+      
+      <ion-item class="ion-no-padding animated fadeInUp">
+        <ion-label position="floating">
+          <ion-icon name="mail" item-start></ion-icon>
+          Usuario
+        </ion-label>
+        <ion-input color="secondary" type="text" formControlName="usuario"></ion-input>
+      </ion-item>
+      <p class="text08" *ngIf="onRegisterForm.get('usuario').touched && onRegisterForm.get('usuario').hasError('required')">
         <ion-text color="danger">
           This field is required
         </ion-text>
@@ -43,7 +69,7 @@
       <ion-item class="ion-no-padding animated fadeInUp">
         <ion-label position="floating">
           <ion-icon name="lock" item-start></ion-icon>
-          Password
+          Contraseña
         </ion-label>
         <ion-input color="secondary" type="password" formControlName="password"></ion-input>
       </ion-item>
@@ -67,7 +93,7 @@
         </ion-text>
       </p>
 
-      <ion-grid class="btn-group">
+      <!-- <ion-grid class="btn-group">
         <ion-row>
           <ion-col size="4">
             <ion-button shape="round" expand="full" fill="outline" color="tertiary">
@@ -85,7 +111,7 @@
             </ion-button>
           </ion-col>
         </ion-row>
-      </ion-grid>
+      </ion-grid> -->
 
     </div>
 

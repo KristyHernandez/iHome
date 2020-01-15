@@ -3,12 +3,12 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>{{ 'app.pages.hotellist.title.header' | translate }}</ion-title>
+    <ion-title>{{ 'app.pages.hotellist.title.header'  }}</ion-title>
   </ion-toolbar>
 
   <ion-toolbar color="dark">
     <ion-title>
-      <h6 class="ion-no-margin">({{ hotels?.length || '0' }}) {{ 'app.label.resultsf' | translate }}</h6>
+      <h6 class="ion-no-margin">({{ hotels?.length || '0' }}) {{ 'app.label.resultsf'  }}</h6>
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -45,7 +45,7 @@
           <ion-card-content>
             <ion-badge slot="start" color="dark" class="rooms">
               <ion-icon name="book" color="secondary"></ion-icon>
-              {{ hotel.numb_available_rooms }} {{ 'app.label.availrooms' | translate }}
+              {{ hotel.numb_available_rooms }} {{ 'app.label.availrooms'  }}
             </ion-badge>
         
             <ion-badge slot="end" color="success" class="price">
@@ -66,7 +66,7 @@
             <h3>
               <ion-badge slot="start" color="secondary" class="rooms">
                 <ion-icon name="book" color="tertiary"></ion-icon>
-                {{ hotel.numb_available_rooms }} {{ 'app.label.availrooms' | translate }}
+                {{ hotel.numb_available_rooms }} {{ 'app.label.availrooms'  }}
               </ion-badge>
             </h3>
             <ion-badge color="warning">
@@ -94,7 +94,7 @@
                   <h3>
                     <ion-badge slot="start" color="secondary" class="rooms">
                       <ion-icon name="book" color="tertiary"></ion-icon>
-                      {{ hotel.numb_available_rooms }} {{ 'app.label.availrooms' | translate }}
+                      {{ hotel.numb_available_rooms }} {{ 'app.label.availrooms'  }}
                     </ion-badge>
                   </h3>
                   <ion-badge color="warning">
