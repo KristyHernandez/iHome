@@ -1,434 +1,302 @@
 <ion-header>
-  <ion-toolbar color="primary" class="animated fadeIn">
-    <ion-buttons slot="start">
-      <ion-menu-button color="secondary"></ion-menu-button>
-    </ion-buttons>
-    <ion-title>
-      <ion-text color="light">
-<!-- [placeholder]="translate.get('userlist.search')" -->
-<!-- {{ 'app.name'  }} -->
-        IHome <ion-text color="secondary" class="fw700"> </ion-text>
-      </ion-text>
-    </ion-title>
-    <ion-buttons slot="end">
-      <ion-button icon-left size="small" shape="round" color="tertiary" (click)="messages()">
-            <ion-icon name="mail"></ion-icon>
-      </ion-button>
-      <ion-button icon-left size="small" shape="round" color="tertiary" (click)="editprofile()">
-        <ion-icon name="contact"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
+    <ion-toolbar color="primary" class="animated fadeIn">
+        <ion-buttons slot="start">
+            <ion-menu-button color="secondary"></ion-menu-button>
+        </ion-buttons>
+        <ion-title>
+            <ion-text color="light">
+                <!-- [placeholder]="translate.get('userlist.search')" -->
+                <!-- {{ 'app.name'  }} -->
+                IHome <ion-text color="secondary" class="fw700"> </ion-text>
+            </ion-text>
+        </ion-title>
+        <ion-buttons slot="end">
+            <ion-button icon-left size="small" shape="round" color="tertiary" (click)="messages()">
+                <ion-icon name="mail"></ion-icon>
+            </ion-button>
+            <ion-button icon-left size="small" shape="round" color="tertiary" (click)="editprofile()">
+                <ion-icon name="contact"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding animated fadeIn fast">
-
-  <div class="booking-card bg-dark">
+    <!-- ----SEGMENTO DE BUSQUEDA -->
     <ion-card class="searchcard animated fadeIn">
-      <ion-card-content class="ion-no-padding">
-        <ion-grid class="ion-no-padding">
-          <ion-row>
-            <ion-col class="ion-no-padding">
-              <ion-searchbar [(ngModel)]="hotellocation" (ionInput)="getItems($event)" (ionCancel)="showItems = !showItems" autocomplete="on"
- autocorrect="on" spellcheck="true" animated="true" search-icon="pin" color="tertiary" debounce="500" placeholder="Destination or address..."></ion-searchbar>
-              <ion-list class="searchbar-results animated fadeIn" *ngIf="showItems">
-                <ion-item *ngFor="let item of items" tappable (click)="itemSelected(item)">
-                  <ion-icon name="pin" slot="start"></ion-icon>
-                  {{ item }}
-                </ion-item>
-              </ion-list>
-            </ion-col>
-          </ion-row>
+        <ion-card-content class="ion-no-padding">
+            <ion-grid class="ion-no-padding">
+                <ion-row>
+                    <ion-col class="ion-no-padding">
+                        <ion-searchbar [(ngModel)]="data.direccion" spellcheck="true" animated="true" search-icon="pin" color="tertiary" debounce="500" placeholder="Ciudad..."></ion-searchbar>
+                        <!-- <ion-list class="searchbar-results animated fadeIn" *ngIf="showItems">
+                            <ion-item *ngFor="let item of items" tappable (click)="itemSelected(item)">
+                                <ion-icon name="pin" slot="start"></ion-icon>
+                                {{ item }}
+                            </ion-item>
+                        </ion-list> -->
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-card-content>
+        <ion-card-content>
 
-          <!-- <ion-row class="ion-no-padding ion-no-margin">
-            <ion-col size="6" class="ion-no-padding ion-no-margin ion-text-center br bb datetime-btn">
-              <ion-item lines="none" class="ion-text-center">
-                <ion-label position="stacked">
-                  <ion-icon name="calendar" slot="start" class="text-dark"></ion-icon>
-                  <ion-text color="dark">{{ checkin.name }}</ion-text>
-                </ion-label>
+            <ion-row class="adjust-qts">
+                <ion-col size="3" class="ion-no-padding br bb bl bt">
+                    <ion-item>
+                        <ion-label class="ion-no-padding text08">
+                            <ion-text color="dark">Habitaciones</ion-text>
+                        </ion-label>
+                        <ion-select [(ngModel)]="data.rooms" cancelText="Cancel" okText="OK" color="primary" class="ion-no-padding text1 text-dark">
+                            <ion-select-option *ngFor="let item of [].constructor(9);let idx=index" [value]="idx+1">{{idx+1}}</ion-select-option>
+                        </ion-select>
+                    </ion-item>
+                </ion-col>
 
-                <ion-datetime class="text-primary" displayFormat="MM/DD/YYYY" pickerFormat="YYYY-MM-DD" min="2019" max="2020" [(ngModel)]="checkin.date"></ion-datetime>
-              </ion-item>
-            </ion-col>
-            <ion-col size="6" class="ion-no-padding ion-no-margin ion-text-center bb datetime-btn">
-              <ion-item lines="none" class="ion-text-center">
-                <ion-label position="stacked">
-                  <ion-icon name="calendar" slot="start" class="text-dark"></ion-icon>
-                  <ion-text color="dark">{{ checkout.name }}</ion-text>
-                </ion-label>
-                <ion-datetime class="text-primary" displayFormat="MM/DD/YYYY" pickerFormat="YYYY-MM-DD" min="2019" max="2020" [(ngModel)]="checkout.date"></ion-datetime>
-              </ion-item>
-            </ion-col>
-          </ion-row> -->
-        </ion-grid>
-      </ion-card-content>
-      <ion-card-content>
-
-        <ion-row class="adjust-qts">
-          <ion-col size="3" class="ion-no-padding br bb bl bt">
-              <ion-item>
-                <ion-label class="ion-no-padding text08">
-                    <ion-text color="dark">Habitaciones</ion-text>
-                </ion-label>
-                <ion-select [(ngModel)]="data.rooms" cancelText="Cancel" okText="OK" color="primary"  class="ion-no-padding text1 text-dark">
-                  <ion-select-option value="1" selected="true">1</ion-select-option>
-                  <ion-select-option value="2">2</ion-select-option>
-                  <ion-select-option value="3">3</ion-select-option>
-                  <ion-select-option value="4">4</ion-select-option>
-                  <ion-select-option value="5">5</ion-select-option>
-                  <ion-select-option value="6">6</ion-select-option>
-                  <ion-select-option value="7">7</ion-select-option>
-                  <ion-select-option value="8">8</ion-select-option>
-                  <ion-select-option value="9">9</ion-select-option>
-                </ion-select>
-              </ion-item>
-          </ion-col>
-          <ion-col size="3" class="ion-no-padding br bb bt">
+                <ion-col size="3" class="ion-no-padding br bb bt">
+                    <ion-list>
+                        <ion-item>
+                            <ion-label>Garaje</ion-label>
+                            <ion-select [(ngModel)]="data.garaje">
+                                <ion-select-option value="Si">Si</ion-select-option>
+                                <ion-select-option value="No">No</ion-select-option>
+                            </ion-select>
+                        </ion-item>
+                    </ion-list>
 
 
+                </ion-col>
+                <ion-col size="3" class="ion-no-padding bb bt br">
+                    <ion-item>
+                        <ion-label class="ion-no-padding ion-no-margin text-primary text08">
+                            <ion-text color="dark">Niños</ion-text>
+                        </ion-label>
+                        <ion-select [(ngModel)]="data.children" cancelText="Cancel" okText="OK" class="ion-no-padding text1 text-dark">
+                            <ion-select-option *ngFor="let item of [].constructor(9);let idx=index" [value]="idx">{{idx}}</ion-select-option>
+                        </ion-select>
+                    </ion-item>
 
-<ion-list>
-    <!-- <ion-list-header>Garaje</ion-list-header> -->
+                </ion-col>
+                <ion-col>
+                    <ion-list>
+                        <ion-item>
+                            <ion-label>Mascotas</ion-label>
+                            <ion-select [(ngModel)]="data.mascotas" value="brown" okText="Okay" cancelText="Dismiss">
+                                <ion-select-option value="Si">Si</ion-select-option>
+                                <ion-select-option value="No">No</ion-select-option>
 
-    <ion-item>
-      <ion-label>Garaje</ion-label>
-      <ion-select [(ngModel)]="data.garaje">
-        <ion-select-option value="true">Si</ion-select-option>
-        <ion-select-option value="false">No</ion-select-option>
-      </ion-select>
-    </ion-item>
+                            </ion-select>
+                        </ion-item>
+                    </ion-list>
+                </ion-col>
+                <ion-col size="6" class="ion-no-padding">
+                </ion-col>
+            </ion-row>
 
+            <ion-row class="adjust-qts">
+                <ion-col size="3" class="ion-no-padding br bb bl bt">
+                    <ion-list>
+                        <ion-item>
+                            <ion-label>Sala</ion-label>
+                            <ion-select [(ngModel)]="data.sala" okText="Okay" cancelText="Dismiss">
+                                <ion-select-option value="Si">Si</ion-select-option>
+                                <ion-select-option value="No">No</ion-select-option>
 
+                            </ion-select>
+                        </ion-item>
+                    </ion-list>
+                </ion-col>
 
-    <!-- <ion-item>
-      <ion-label>Mascotas</ion-label>
-      <ion-select value="brown" okText="Okay" cancelText="Dismiss">
-        <ion-select-option value="Si">Si</ion-select-option>
-        <ion-select-option value="No">No</ion-select-option>
+                <ion-col size="3" class="ion-no-padding br bb bl bt">
+                    <ion-list>
+                        <ion-item>
+                            <ion-label>Amueblado</ion-label>
+                            <ion-select [(ngModel)]="data.amueblado" okText="Okay" cancelText="Dismiss">
+                                <ion-select-option value="Si">Si</ion-select-option>
+                                <ion-select-option value="No">No</ion-select-option>
 
-      </ion-select>
-    </ion-item> -->
+                            </ion-select>
+                        </ion-item>
+                    </ion-list>
+                </ion-col>
 
-  </ion-list>
+                <ion-col size="3" class="ion-no-padding br bb bl bt">
+                    <ion-list>
+                        <ion-item>
+                            <ion-label>Cocina</ion-label>
+                            <ion-select [(ngModel)]="data.cocina" okText="Okay" cancelText="Dismiss">
+                                <ion-select-option value="Si">Si</ion-select-option>
+                                <ion-select-option value="No">No</ion-select-option>
 
-
-
-
-              <ion-item hidden="true">
-                <ion-label class="ion-no-padding text-primary text08">
-                  <ion-text color="dark">{{ Adultlos  }}</ion-text>
-                </ion-label>
-                <ion-select [(ngModel)]="adults" cancelText="Cancel" okText="OK" class="ion-no-padding text1 text-dark">
-                  <ion-select-option value="1" selected="true">1</ion-select-option>
-                  <ion-select-option value="2">2</ion-select-option>
-                  <ion-select-option value="3">3</ion-select-option>
-                  <ion-select-option value="4">4</ion-select-option>
-                  <ion-select-option value="5">5</ion-select-option>
-                  <ion-select-option value="6">6</ion-select-option>
-                  <ion-select-option value="7">7</ion-select-option>
-                  <ion-select-option value="8">8</ion-select-option>
-                  <ion-select-option value="9">9</ion-select-option>
-                </ion-select>
-              </ion-item>
-
-          </ion-col>
-          <ion-col size="3" class="ion-no-padding bb bt br">
-
-              <ion-item>
-                <ion-label class="ion-no-padding ion-no-margin text-primary text08">
-                  <ion-text color="dark">Niños</ion-text>
-                </ion-label>
-                <ion-select [(ngModel)]="data.children" cancelText="Cancel" okText="OK" (ngModelChange)="childrenArr($event)" class="ion-no-padding text1 text-dark">
-                  <ion-select-option value="0" selected="true">0</ion-select-option>
-                  <ion-select-option value="1">1</ion-select-option>
-                  <ion-select-option value="2">2</ion-select-option>
-                  <ion-select-option value="3">3</ion-select-option>
-                  <ion-select-option value="4">4</ion-select-option>
-                  <ion-select-option value="5">5</ion-select-option>
-                  <ion-select-option value="6">6</ion-select-option>
-                  <ion-select-option value="7">7</ion-select-option>
-                  <ion-select-option value="8">8</ion-select-option>
-                  <ion-select-option value="9">9</ion-select-option>
-                </ion-select>
-              </ion-item>
-
-          </ion-col>
-          <ion-col>
-            <ion-list>
-              <ion-item>
-                <ion-label>Mascotas</ion-label>
-                <ion-select [(ngModel)]="data.mascotas" value="brown" okText="Okay" cancelText="Dismiss">
-                  <ion-select-option value="Si">Si</ion-select-option>
-                  <ion-select-option value="No">No</ion-select-option>
-
-                </ion-select>
-              </ion-item>
-            </ion-list>
-          </ion-col>
-          <ion-col size="6" class="ion-no-padding">
-
-          </ion-col>
-        </ion-row>
-
-        <ion-row *ngIf="children > 0" class="animated fadeIn">
-          <ion-col size="12" class="ion-padding-vertical">
-            <ion-text color="primary" class="ion-text-center">
-              <h3 class="bold" *ngIf="children > 0 && children < 2">{{ 'app.pages.home.label.childage'  }}</h3>
-              <h3 class="bold" *ngIf="children > 1">{{ 'app.pages.home.label.childrenages'  }}</h3>
-            </ion-text>
-          </ion-col>
-          <ion-col size="6" class="ion-no-padding bb bt br bl" *ngFor="let child of childs; let i = index">
-
-              <ion-item>
-                <ion-label class="ion-no-padding ion-no-margin text-primary text08">
-                  <ion-text color="dark">{{ 'app.pages.home.label.child'  }} {{ i + 1 }}</ion-text>
-                </ion-label>
-                <ion-select cancelText="Cancel" okText="OK" class="ion-no-padding text08 text-dark">
-                  <ion-select-option value="0" selected="true">0</ion-select-option>
-                  <ion-select-option value="1">1</ion-select-option>
-                  <ion-select-option value="2">2</ion-select-option>
-                  <ion-select-option value="3">3</ion-select-option>
-                  <ion-select-option value="4">4</ion-select-option>
-                  <ion-select-option value="5">5</ion-select-option>
-                  <ion-select-option value="6">6</ion-select-option>
-                  <ion-select-option value="7">7</ion-select-option>
-                  <ion-select-option value="8">8</ion-select-option>
-                  <ion-select-option value="9">9</ion-select-option>
-                  <ion-select-option value="10">10</ion-select-option>
-                  <ion-select-option value="11">11</ion-select-option>
-                  <ion-select-option value="12">12</ion-select-option>
-                  <ion-select-option value="13">13</ion-select-option>
-                  <ion-select-option value="14">14</ion-select-option>
-                </ion-select>
-              </ion-item>
-
-          </ion-col>
-        </ion-row>
-        <!-- <ion-row class="adjust-qts">
-          <ion-col size="12" class="ion-no-padding ion-margin-top ion-margin-bottom bb bt br bl">
-
-              <ion-item>
-                <ion-label class="ion-no-padding ion-no-margin text-primary text08">
-                  <ion-text color="dark">{{ 'app.pages.home.label.pamenities'  }}</ion-text>
-                </ion-label>
-                <ion-select multiple="true" cancelText="Cancel" okText="OK" class="ion-no-padding text08 text-dark">
-                  <ion-select-option value="0" selected="true">Wifi</ion-select-option>
-                  <ion-select-option value="1">Conference</ion-select-option>
-                  <ion-select-option value="2">Pool</ion-select-option>
-                  <ion-select-option value="3">Free Parking</ion-select-option>
-                  <ion-select-option value="4">Free Breakfast</ion-select-option>
-                </ion-select>
-              </ion-item>
-
-          </ion-col>
-        </ion-row> -->
-
-        <ion-row class="adjust-qts">
-            <ion-col size="3" class="ion-no-padding br bb bl bt">
-                <ion-list>
-              <ion-item>
-                <ion-label>Sala</ion-label>
-                <ion-select value="brown" okText="Okay" cancelText="Dismiss">
-                  <ion-select-option value="Si">Si</ion-select-option>
-                  <ion-select-option value="No">No</ion-select-option>
-
-                </ion-select>
-              </ion-item>
-            </ion-list>
-            </ion-col>
-
-            <ion-col size="3" class="ion-no-padding br bb bl bt">
-                <ion-list>
-              <ion-item>
-                <ion-label>Amueblado</ion-label>
-                <ion-select value="brown" okText="Okay" cancelText="Dismiss">
-                  <ion-select-option value="Si">Si</ion-select-option>
-                  <ion-select-option value="No">No</ion-select-option>
-
-                </ion-select>
-              </ion-item>
-            </ion-list>
-            </ion-col>
-
-            <ion-col size="3" class="ion-no-padding br bb bl bt">
-                <ion-list>
-              <ion-item>
-                <ion-label>Cocina</ion-label>
-                <ion-select value="brown" okText="Okay" cancelText="Dismiss">
-                  <ion-select-option value="Si">Si</ion-select-option>
-                  <ion-select-option value="No">No</ion-select-option>
-
-                </ion-select>
-              </ion-item>
-            </ion-list>
-            </ion-col>
+                            </ion-select>
+                        </ion-item>
+                    </ion-list>
+                </ion-col>
 
 
-            <ion-col size="3" class="ion-no-padding br bb bl bt">
+                <ion-col size="3" class="ion-no-padding br bb bl bt">
 
-            <ion-list>
-              <ion-item>
-                <ion-label>Lavanderia</ion-label>
-                <ion-select value="brown" okText="Okay" cancelText="Dismiss">
-                  <ion-select-option value="Si">Si</ion-select-option>
-                  <ion-select-option value="No">No</ion-select-option>
+                    <ion-list>
+                        <ion-item>
+                            <ion-label>Lavanderia</ion-label>
+                            <ion-select [(ngModel)]="data.lavanderia" okText="Okay" cancelText="Dismiss">
+                                <ion-select-option value="Si">Si</ion-select-option>
+                                <ion-select-option value="No">No</ion-select-option>
 
-                </ion-select>
-              </ion-item>
-            </ion-list>
-          </ion-col>
+                            </ion-select>
+                        </ion-item>
+                    </ion-list>
+                </ion-col>
 
 
-        </ion-row>
-        <ion-row>
-          <ion-col>
-            <ion-button icon-left shape="round" size="full" color="primary" (click)="viewHotels()">
-              <ion-ripple-effect></ion-ripple-effect>
-              <ion-icon name="search"></ion-icon>
-              Buscar
-            </ion-button>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <ion-button icon-left shape="round" size="full" color="primary" (click)="viewHotels()">
+                        <ion-ripple-effect></ion-ripple-effect>
+                        <ion-icon name="search"></ion-icon>
+                        Buscar
+                    </ion-button>
 
-            <ion-button icon-left shape="round" size="full" color="primary" (click)="uploadImg()" *ngIf="login==true">
-              <ion-ripple-effect></ion-ripple-effect>
-              <ion-icon name="Subir Imagenes"></ion-icon>
-              Subir fotografia
-            </ion-button>
-          </ion-col>
-        </ion-row>
-      </ion-card-content>
+                    <ion-button icon-left shape="round" size="full" color="primary" (click)="uploadImg()" *ngIf="login==true">
+                        <ion-ripple-effect></ion-ripple-effect>
+                        <ion-icon name="Subir Imagenes"></ion-icon>
+                        Subir fotografia
+                    </ion-button>
+                </ion-col>
+            </ion-row>
+        </ion-card-content>
     </ion-card>
 
-    <ion-text color="primary">
-      <h3><ion-icon size="small" color="dark" name="map"></ion-icon> Ubicacion</h3>
-    </ion-text>
 
-    <ion-card class="animated fadeIn" *ngIf="miPosicion.latitud != null">
-      <ion-card-content class="ion-no-padding">
-        <agm-map [latitude]="miPosicion.latitud" [longitude]="miPosicion.longitud" [zoom]="10" [zoomControl]="false" [styles]="agmStyles" [streetViewControl]="false">
-          <agm-marker *ngFor="let hotel of hotels" [latitude]="miPosicion.latitud" [longitude]="miPosicion.longitud">
-              <agm-info-window>
-                  <ion-item tappable routerLink="/hotel-detail/{{hotel.id}}">
+
+    <div class="booking-card bg-dark">
+
+
+        <ion-text color="primary">
+            <h3>
+                <ion-icon size="small" color="dark" name="map"></ion-icon> Ubicacion
+            </h3>
+        </ion-text>
+        <!-- -----mapa -->
+        <ion-card class="animated fadeIn" *ngIf="miPosicion.latitud != null">
+            <ion-card-content class="ion-no-padding">
+                <agm-map [latitude]="miPosicion.latitud" [longitude]="miPosicion.longitud" [zoom]="10" [zoomControl]="false" [styles]="agmStyles" [streetViewControl]="false">
+                    <agm-marker *ngFor="let hotel of hotels" [latitude]="miPosicion.latitud" [longitude]="miPosicion.longitud">
+                        <agm-info-window>
+                            <ion-item tappable routerLink="/hotel-detail/{{hotel.id}}">
+                                <ion-thumbnail slot="start">
+                                    <img [src]="hotel.thumb">
+                                </ion-thumbnail>
+                                <ion-label>
+                                    <ion-text color="primary">
+                                        <h2><strong>{{ hotel.name }}</strong></h2>
+                                    </ion-text>
+
+                                    <h3>
+                                        <ion-badge slot="start" color="secondary" class="rooms">
+                                            <ion-icon name="book" color="tertiary"></ion-icon>
+                                            {{ hotel.numb_available_rooms }} {{ 'app.pages.home.label.availrooms'  }}
+                                        </ion-badge>
+                                    </h3>
+                                    <ion-badge color="warning">
+                                        <ion-icon name="star"></ion-icon> {{ hotel.rating }}
+                                    </ion-badge>
+                                </ion-label>
+                            </ion-item>
+                        </agm-info-window>
+                    </agm-marker>
+                </agm-map>
+            </ion-card-content>
+        </ion-card>
+
+        <hr class="bg-tertiary">
+
+        <ion-text color="primary">
+            <h3>
+                <ion-icon size="small" color="dark" name="bookmark"></ion-icon> Sugerencias
+            </h3>
+        </ion-text>
+
+        <ion-slides pager="true" class="ion-margin-bottom">
+            <ion-slide *ngFor="let hotel of apartamentos; let i = index">
+                <!-- <ion-slide *ngFor="let hotel of apartamentos | slice:0:4; let i = index"> -->
+                <ion-grid class="ion-no-padding">
+                    <ion-row>
+                        <ion-col size="12">
+                            <ion-card class="hotelsCard" tappable routerLink="/hotel-detail/{{hotel.id_anuncio}}">
+                                <ion-img [src]="hotel.images[0].url_foto"></ion-img>
+
+                                <ion-card-subtitle>
+                                    <!-- <ion-badge color="warning">
+                                        <ion-icon name="star"></ion-icon> {{ hotel.rating }}
+                                    </ion-badge> -->
+                                </ion-card-subtitle>
+                                <ion-card-title color="light">{{ hotel.descripcion }}</ion-card-title>
+                                <div class="shadow"></div>
+                                <ion-card-content>
+                                    <ion-badge slot="start" color="dark" class="rooms">
+                                        <ion-icon name="book" color="secondary"></ion-icon>
+                                        Habitaciones: {{hotel.numero_cuartos}}
+                                    </ion-badge>
+
+                                    <!-- <ion-badge slot="end" color="success" class="price"> -->
+                                    <!-- <h3><strong>{{ hotel.price | currency:'$':'code' }}</strong></h3> -->
+                                    <!-- </ion-badge> -->
+                                </ion-card-content>
+                            </ion-card>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+
+            </ion-slide>
+        </ion-slides>
+
+        <hr class="bg-tertiary">
+
+        <ion-text color="primary">
+            <h3>
+                <ion-icon size="small" color="dark" name="bookmarks"></ion-icon> Recien publicados
+            </h3>
+        </ion-text>
+
+        <ion-card>
+            <ion-list>
+                <ion-item color="dark" tappable routerLink="/hotel-detail/{{hotel.id}}" *ngFor="let hotel of hotels | slice:4:8; let i = index">
                     <ion-thumbnail slot="start">
-                      <img [src]="hotel.thumb">
+                        <img [src]="hotel.thumb">
                     </ion-thumbnail>
                     <ion-label>
-                      <ion-text color="primary">
                         <h2><strong>{{ hotel.name }}</strong></h2>
-                      </ion-text>
-
-                      <h3>
-                        <ion-badge slot="start" color="secondary" class="rooms">
-                          <ion-icon name="book" color="tertiary"></ion-icon>
-                          {{ hotel.numb_available_rooms }} {{ 'app.pages.home.label.availrooms'  }}
+                        <h3>
+                            <ion-badge slot="start" color="secondary" class="rooms">
+                                <ion-icon name="book" color="tertiary"></ion-icon>
+                                {{ hotel.numb_available_rooms }} {{ 'app.pages.home.label.availrooms'  }}
+                            </ion-badge>
+                        </h3>
+                        <ion-badge color="warning">
+                            <ion-icon name="star"></ion-icon> {{ hotel.rating }}
                         </ion-badge>
-                      </h3>
-                      <ion-badge color="warning">
-                        <ion-icon name="star"></ion-icon> {{ hotel.rating }}
-                      </ion-badge>
                     </ion-label>
-                  </ion-item>
-                </agm-info-window>
-          </agm-marker>
-        </agm-map>
-      </ion-card-content>
-    </ion-card>
+                </ion-item>
+            </ion-list>
+        </ion-card>
+    </div>
 
-    <hr class="bg-tertiary">
-
-    <ion-text color="primary">
-      <h3><ion-icon size="small" color="dark" name="bookmark"></ion-icon> Sugerencias</h3>
-    </ion-text>
-
-    <ion-slides pager="true" class="ion-margin-bottom">
-      <ion-slide *ngFor="let hotel of hotels | slice:0:4; let i = index">
-        <ion-grid class="ion-no-padding">
-          <ion-row>
-            <ion-col size="12">
-              <ion-card class="hotelsCard" tappable routerLink="/hotel-detail/{{hotel.id}}">
-                <ion-img [src]="hotel.thumb"></ion-img>
-
-                <ion-card-subtitle>
-                  <ion-badge color="warning">
-                    <ion-icon name="star"></ion-icon> {{ hotel.rating }}
-                  </ion-badge>
-                </ion-card-subtitle>
-                <ion-card-title color="light">{{ hotel.name }}</ion-card-title>
-                <div class="shadow"></div>
-                <ion-card-content>
-                  <ion-badge slot="start" color="dark" class="rooms">
-                    <ion-icon name="book" color="secondary"></ion-icon>
-                    {{ hotel.numb_available_rooms }} {{ 'app.pages.home.label.availrooms'  }}
-                  </ion-badge>
-
-                  <ion-badge slot="end" color="success" class="price">
-                    <h3><strong>{{ hotel.price | currency:'$':'code' }}</strong></h3>
-                  </ion-badge>
-                </ion-card-content>
-              </ion-card>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-
-      </ion-slide>
-    </ion-slides>
-
-    <hr class="bg-tertiary">
-
-    <ion-text color="primary">
-      <h3><ion-icon size="small" color="dark" name="bookmarks"></ion-icon> {{ 'app.pages.home.title.latestbookings'  }}</h3>
-    </ion-text>
-
-    <ion-card>
-      <ion-list>
-          <ion-item color="dark" tappable routerLink="/hotel-detail/{{hotel.id}}" *ngFor="let hotel of hotels | slice:4:8; let i = index">
-              <ion-thumbnail slot="start">
-                <img [src]="hotel.thumb">
-              </ion-thumbnail>
-              <ion-label>
-                <h2><strong>{{ hotel.name }}</strong></h2>
-                <h3>
-                  <ion-badge slot="start" color="secondary" class="rooms">
-                    <ion-icon name="book" color="tertiary"></ion-icon>
-                    {{ hotel.numb_available_rooms }} {{ 'app.pages.home.label.availrooms'  }}
-                  </ion-badge>
-                </h3>
-                <ion-badge color="warning">
-                    <ion-icon name="star"></ion-icon> {{ hotel.rating }}
-                  </ion-badge>
-              </ion-label>
-            </ion-item>
-      </ion-list>
-    </ion-card>
-  </div>
-  <!-- ## -->
-  <!-- ## -->
-  <!-- <popmenu></popmenu> -->
 </ion-content>
 
 <ion-footer class="animated fadeIn">
-  <ion-toolbar color="primary">
-    <ion-grid class="ion-no-padding">
-        <ion-row>
-          <!-- <ion-col size="4" class="ion-no-padding">
-            <ion-button size="small" shape="round" expand="full" fill="clear" color="tertiary" routerLink="/rentcar">
-              <ion-icon slot="start" name="car"></ion-icon>
-              {{ 'app.pages.menu.rentacar'  }}
-            </ion-button>
-          </ion-col>
-          <ion-col size="4" class="ion-no-padding">
-            <ion-button size="small" shape="round" expand="full" fill="clear" color="tertiary" routerLink="/activities">
-              <ion-icon slot="start" name="beer"></ion-icon>
-              {{ 'app.pages.menu.activitiestab'  }}
-            </ion-button>
-          </ion-col> -->
-          <ion-col size="4" class="ion-no-padding">
-            <ion-button size="small" shape="round" expand="full" fill="clear" color="light" (click)="settings()">
-              <ion-icon slot="start" name="cog"></ion-icon>
-              {{ 'app.pages.menu.settings'  }}
-            </ion-button>
-          </ion-col>
-        </ion-row>
-    </ion-grid>
-  </ion-toolbar>
+    <ion-toolbar color="primary">
+        <ion-grid class="ion-no-padding">
+            <ion-row>
+
+                <ion-col size="4" class="ion-no-padding">
+                    <ion-button size="small" shape="round" expand="full" fill="clear" color="light" (click)="settings()">
+                        <ion-icon slot="start" name="cog"></ion-icon>
+                        {{ 'app.pages.menu.settings'  }}
+                    </ion-button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-toolbar>
 </ion-footer>
