@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { PagosPage } from './pages/pagos/pagos.page';
 
-import { Platform, NavController } from '@ionic/angular';
+import { Platform, NavController, ModalController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
@@ -46,7 +47,8 @@ export class AppComponent implements OnInit {
         private translate: TranslateProvider,
         private translateService: TranslateService,
         public navCtrl: NavController,
-        private _rute: Router
+        private _rute: Router,
+        private _modal: ModalController
     ) {
         this.appPages = [
             {
@@ -67,6 +69,13 @@ export class AppComponent implements OnInit {
                 direct: 'forward',
                 icon: 'information-circle-outline'
             },
+            {
+                title: 'Pagos',
+                url: '/rentcar',
+                direct: 'forward',
+                icon: 'cash'
+            }
+            ,
             {
                 title: 'Soporte',
                 url: '/support',
@@ -128,5 +137,14 @@ export class AppComponent implements OnInit {
      */
     logout() {
         this.navCtrl.navigateRoot('login');
+    }
+
+    async modal() {
+        const modal = await this._modal.create({ component: PagosPage });
+        console.log(modal)
+        console.log("·40000")
+        modal.onDidDismiss().then(async (data: any) => {
+        });
+        return await modal.present();
     }
 }

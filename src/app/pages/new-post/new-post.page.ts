@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { trigger, style, animate, transition, query, stagger } from '@angular/animations';
-import { AlertController, IonSlides } from '@ionic/angular';
+import { AlertController, IonSlides, ModalController } from '@ionic/angular';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { environment } from '../../../environments/environment';
 import { UsersService } from '../../providers/usuarios/users.service';
@@ -57,7 +57,8 @@ export class NewPostPage implements OnInit {
     @ViewChild("slides", { static: false }) slides: IonSlides;
     constructor(public _alerta: AlertController,
         private Geolocation: Geolocation,
-        private _api: UsersService
+        private _api: UsersService,
+        private _modal: ModalController
 
     ) { }
 
@@ -184,8 +185,45 @@ export class NewPostPage implements OnInit {
 
     async publicar() {
         if (String(this.data.titulo) == 'null' || String(this.data.descripcion) == 'null' || !this.imagenes[0]) return
-        console.log("#Bien")
-        console.log(this.data)
+        this.data["pos"] = await this.miPosicion
+        this.data["id"] = await JSON.parse(sessionStorage.getItem("user")).id_user
+
+        if (String(this.data.garaje) == 'null') {
+            this.data.garaje = false
+        }
+        if (String(this.data.rooms) == 'null') {
+            this.data.rooms = false
+        }
+        if (String(this.data.children) == 'null') {
+            this.data.children = false
+        }
+        if (String(this.data.mascotas) == 'null') {
+            this.data.mascotas = false
+        }
+        if (String(this.data.sala) == 'null') {
+            this.data.sala = false
+        }
+        if (String(this.data.cocina) == 'null') {
+            this.data.cocina = false
+        }
+        if (String(this.data.lavanderia) == 'null') {
+            this.data.lavanderia = false
+        }
+        if (String(this.data.amueblado) == 'null') {
+            this.data.amueblado = false
+        }
+        if (String(this.data.amueblado) == 'null') {
+            this.data.amueblado = false
+        }
+
+        let resp: any = await this._api.genera(this.data)
+        // console.log(resp)
+        if (resp.id) {
+            for (let i = 0; i < this.imagenes_list.length; i++) {
+                let media = await this._api.img_upload(this.imagenes_list[i], resp.id)
+            }
+            this._modal.dismiss()
+        }
     }
 
 

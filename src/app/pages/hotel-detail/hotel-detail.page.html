@@ -31,6 +31,10 @@
 
         <div [ngSwitch]="hotelSegment">
             <div *ngSwitchCase="'details'">
+                <ion-card class="ion-no-margin ion-margin-bottom bg-white animated fadeIn" *ngIf="editar==true">
+                    <ion-button expand="full" (click)="editaModal()">Editar</ion-button>
+                </ion-card>
+
 
                 <ion-card class="ion-no-margin ion-margin-top ion-margin-bottom animated fadeIn">
                     <ion-card-content class="ion-no-padding">

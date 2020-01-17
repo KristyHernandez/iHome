@@ -3,6 +3,8 @@ import { NavController, ActionSheetController, ToastController, ModalController 
 import { TranslateProvider, HotelProvider } from '../../providers';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UsersService } from '../../providers/usuarios/users.service';
+import { NewPostPage } from '../new-post/new-post.page';
+import { EditPostPage } from '../edit-post/edit-post.page';
 
 import { ImagePage } from './../modal/image/image.page';
 import { HotelCheckoutPage } from '../hotel-checkout/hotel-checkout.page'
@@ -36,7 +38,7 @@ export class HotelDetailPage implements OnInit {
     hotelID: any = this.route.snapshot.paramMap.get('id');
     agmStyles: any[] = environment.agmStyles;
     hotelSegment: string = 'details';
-
+    editar: boolean = false
     constructor(
         public navCtrl: NavController,
         public asCtrl: ActionSheetController,
@@ -55,6 +57,11 @@ export class HotelDetailPage implements OnInit {
         // this.hotel = await this.hotels.getItem(this.hotelID);
         this.hotel = await this._api.apartamentoById(this.hotelID)
         console.log(this.hotel)
+        if (this.hotel.id_user == JSON.parse(sessionStorage.getItem("user")).id_user || String(this.hotel.id_user) == String(JSON.parse(sessionStorage.getItem("user")).id_user)) {
+            this.editar = true
+        } else {
+            this.editar = false
+        }
     }
 
     checkout(hotelID: number, roomID: number) {
@@ -84,6 +91,17 @@ export class HotelDetailPage implements OnInit {
 
                 toast.present();
             });
+    }
+
+
+    async editaModal() {
+        console.log("·40000")
+        const modal = await this.modalCtrl.create({ component: EditPostPage });
+        console.log(modal)
+        console.log("·40000")
+        modal.onDidDismiss().then(async (data: any) => {
+        });
+        return await modal.present();
     }
 
 }

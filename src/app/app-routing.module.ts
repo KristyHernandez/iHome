@@ -33,7 +33,15 @@ const routes: Routes = [
     { path: 'activity-checkout/:tripID', loadChildren: () => import('./pages/activity-checkout/activity-checkout.module').then(m => m.ActivityCheckoutPageModule) },
     {
         path: 'new-post', loadChildren: () => import('./pages/new-post/new-post.module').then(m => m.NewPostPageModule)
-    }
+    },
+  {
+    path: 'edit-post',
+    loadChildren: () => import('./pages/edit-post/edit-post.module').then( m => m.EditPostPageModule)
+  },
+  {
+    path: 'pagos',
+    loadChildren: () => import('./pages/pagos/pagos.module').then( m => m.PagosPageModule)
+  }
 
 ];
 

@@ -52,6 +52,24 @@ export class UsersService {
         return await this.Pro_http.post(url, body).toPromise();
 
     }
+
+    async genera(data: any) {
+        let body = data
+        let url = `${WEB_SERVICE}apartamentos/genera`
+        return await this.Pro_http.post(url, body).toPromise();
+
+    }
+
+    async img_upload(item, id) {
+        const fd = new FormData();
+        fd.append('image', item, item.name)
+        fd.append('id', `${id}`)
+        const url = `${WEB_SERVICE}apartamentos/uplFoto`;
+
+        return await this.Pro_http.post(url, fd).toPromise();
+    }
+
+
     // let url = `${WEB_SERVICE}users/gopagoPost`
     // return await this.Pro_http.post(url, body).toPromise();
     //

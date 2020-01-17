@@ -31,6 +31,8 @@ const routes: Routes = [
             apiKey: 'AIzaSyD9BxeSvt3u--Oj-_GD-qG2nPr1uODrR0Y'
         })
     ],
-    declarations: [HotelListPage, NewPostPage, NewPostPage]
+    declarations: [HotelListPage,
+        NewPostPage
+    ]
 })
 export class HotelListPageModule { }

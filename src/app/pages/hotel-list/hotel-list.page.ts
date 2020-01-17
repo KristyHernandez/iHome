@@ -44,18 +44,24 @@ export class HotelListPage implements OnInit {
     }
 
     async ngOnInit() {
-        let resp = await this._api.miLista(await JSON.parse(sessionStorage.getItem("user")).id_user)
-        this.hotels = await resp
-        console.log(resp)
+        this.carga()
     }
 
     segmentChanged(ev: any) {
         console.log('Segment changed', ev);
     }
+    async carga() {
+        let resp = await this._api.miLista(await JSON.parse(sessionStorage.getItem("user")).id_user)
+        this.hotels = await resp
+    }
+
 
     async registrarNuevo() {
         const modal = await this._modal.create({ component: NewPostPage });
-        modal.onDidDismiss().then((data: any) => { });
+        modal.onDidDismiss().then(async (data: any) => {
+            await this.carga()
+        });
+
         await modal.present();
     }
 

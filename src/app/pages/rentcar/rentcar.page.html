@@ -1,18 +1,61 @@
 <ion-header>
-  <ion-toolbar color="primary">
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
-    </ion-buttons>
-    <ion-title>Rent a Car</ion-title>
-  </ion-toolbar>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>Mis Pagos</ion-title>
+    </ion-toolbar>
 </ion-header>
 
 
 <ion-content class="ion-padding animated fadeIn">
-  <ion-grid fixed>
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Hale para recargar" refreshingSpinner="circles" refreshingText="Recargando..."></ion-refresher-content>
+    </ion-refresher>
+    <ion-grid>
+        <ion-row justify-content-center>
+            <ion-col align-self-center size-md="2" size-lg="2" size-xs="6">
+                <ion-label text-center class="restante">Dias Restantes</ion-label>
+            </ion-col>
+            <ion-col align-self-center size-md="2" size-lg="1" size-xs="5"></ion-col>
+        </ion-row>
+        <ion-row justify-content-center>
+            <ion-col align-self-center size-md="2" size-lg="1" size-xs="4">
+                <ion-label class="counter">{{pagos.dias_restantes}}</ion-label>
+            </ion-col>
+            <ion-col align-self-center size-md="2" size-lg="2" size-xs="6">
+                <ion-button color="warning" (click)="pagar()" expand="full">Pagar &nbsp;<ion-icon color="success" name="ios-cash">
+                    </ion-icon>
+                </ion-button>
+                <div id="paypal-checkout-btn" [hidden]="es_movil"></div>
+            </ion-col>
+        </ion-row>
+        <ion-row justify-content-center>
+            <ion-col align-self-center size-md="6" size-lg="4" size-xs="12">
+                <ion-item color="primary">
+                    <ion-item color="primary">
+                        <p slot="end" class="historial">Historial de facturas</p>
+                    </ion-item>
+                    <ion-icon slot="end" name="list-box"></ion-icon>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+        <ion-row justify-content-center class="row_historial" *ngFor="let item of pagos.historial" (click)="downloadPdf(item.id_pago)">
+            <ion-col align-self-center size-md="5" size-lg="3" size-xs="10">
+                <ion-label>
+                    <h2 class="id_pago">{{item.id}}</h2>
+                    <h4 class="fecha_pago">Fecha: {{item.fecha}}</h4>
+                </ion-label>
+            </ion-col>
+            <ion-col align-self-center size-md="1" size-lg="1" size-xs="2">
+                <p class="monto">{{item.monto | currency:"USD":true:"1.2"}}</p>
+            </ion-col>
+        </ion-row>
+    </ion-grid> -->
+    <!-- <ion-grid fixed>
     <ion-row>
       <ion-col>
-        <!-- choose pickup and drop-off-->
+
         <h6 class="ion-no-margin ion-margin-bottom">
           <ion-text color="primary">Pick-up / Drop-off</ion-text>
         </h6>
@@ -26,8 +69,8 @@
             <ion-text color="primary">{{ search.dropOff }}</ion-text>
           </ion-item>
         </ion-card>
-  
-        <!--choose time-->
+
+
         <ion-card class="ion-no-margin ion-margin-bottom bg-white">
           <ion-item>
             <ion-icon name="md-calendar" color="primary" slot="start"></ion-icon>
@@ -40,9 +83,9 @@
               [(ngModel)]="search.to"></ion-datetime>
           </ion-item>
         </ion-card>
-  
+
         <hr>
-  
+
         <h6 class="ion-no-margin ion-margin-bottom">
           <ion-text color="primary">Make:</ion-text>
         </h6>
@@ -64,12 +107,12 @@
             </ion-select>
           </ion-item>
         </ion-card>
-  
+
         <ion-button shape="round" expand="full" color="dark" (click)="doSearch()">
           <ion-icon slot="start" name="search"></ion-icon> Search
         </ion-button>
-  
+
       </ion-col>
     </ion-row>
-  </ion-grid>
+  </ion-grid> -->
 </ion-content>

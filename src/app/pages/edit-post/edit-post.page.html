@@ -1,0 +1,177 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>Editando nuevo</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="ion-padding animated fadeIn">
+    <ion-card class="searchcard animated fadeIn">
+        <ion-card-content>
+            <ion-row class="adjust-qts">
+                <ion-col class="ion-no-padding br bb bl bt">
+                    <ion-list>
+                        <ion-item>
+                            <ion-label>Habitaciones</ion-label>
+                            <ion-select [(ngModel)]="data.rooms" okText="Okay" cancelText="Dismiss">
+                                <ion-select-option *ngFor="let item of [].constructor(9);let idx=index" [value]="idx">{{idx}}</ion-select-option>
+                            </ion-select>
+                        </ion-item>
+                    </ion-list>
+                </ion-col>
+
+                <ion-col class="ion-no-padding br bb bl bt">
+                    <ion-list>
+                        <ion-item>
+                            <ion-label>Garaje</ion-label>
+                            <ion-select [(ngModel)]="data.garaje" okText="Okay" cancelText="Dismiss">
+                                <ion-select-option value="true">Si</ion-select-option>
+                                <ion-select-option value="false">No</ion-select-option>
+                            </ion-select>
+                        </ion-item>
+                    </ion-list>
+                </ion-col>
+            </ion-row>
+
+            <!-- --------- -->
+            <ion-row class="adjust-qts">
+                <ion-col class="ion-no-padding br bb bl bt">
+                    <ion-list>
+                        <ion-item>
+                            <ion-label>Niños</ion-label>
+                            <ion-select [(ngModel)]="data.children" okText="Okay" cancelText="Dismiss">
+                                <ion-select-option *ngFor="let item of [].constructor(9);let idx=index" [value]="idx">{{idx}}</ion-select-option>
+                            </ion-select>
+                        </ion-item>
+                    </ion-list>
+                </ion-col>
+                <ion-col class="ion-no-padding br bb bl bt">
+                    <ion-list>
+                        <ion-item>
+                            <ion-label>Mascotas</ion-label>
+                            <ion-select [(ngModel)]="data.mascotas" okText="Okay" cancelText="Dismiss">
+                                <ion-select-option value="true">Si</ion-select-option>
+                                <ion-select-option value="false">No</ion-select-option>
+                            </ion-select>
+                        </ion-item>
+                    </ion-list>
+                </ion-col>
+            </ion-row>
+
+            <!-- -------- -->
+            <ion-row class="adjust-qts">
+                <ion-col class="ion-no-padding br bb bl bt">
+                    <ion-list>
+                        <ion-item>
+                            <ion-label>Sala</ion-label>
+                            <ion-select [(ngModel)]="data.sala" okText="Okay" cancelText="Dismiss">
+                                <ion-select-option value="true">Si</ion-select-option>
+                                <ion-select-option value="false">No</ion-select-option>
+                            </ion-select>
+                        </ion-item>
+                    </ion-list>
+                </ion-col>
+                <ion-col class="ion-no-padding br bb bl bt">
+                    <ion-list>
+                        <ion-item>
+                            <ion-label>Amueblado</ion-label>
+                            <ion-select [(ngModel)]="data.amueblado" okText="Okay" cancelText="Dismiss">
+                                <ion-select-option value="true">Si</ion-select-option>
+                                <ion-select-option value="false">No</ion-select-option>
+
+                            </ion-select>
+                        </ion-item>
+                    </ion-list>
+                </ion-col>
+            </ion-row>
+            <!-- ---- -->
+            <ion-row class="adjust-qts">
+                <ion-col class="ion-no-padding br bb bl bt">
+                    <ion-list>
+                        <ion-item>
+                            <ion-label>Cocina</ion-label>
+                            <ion-select [(ngModel)]="data.cocina" okText="Okay" cancelText="Dismiss">
+                                <ion-select-option value="true">Si</ion-select-option>
+                                <ion-select-option value="false">No</ion-select-option>
+                            </ion-select>
+                        </ion-item>
+                    </ion-list>
+                </ion-col>
+                <ion-col class="ion-no-padding br bb bl bt">
+                    <ion-list>
+                        <ion-item>
+                            <ion-label>Lavanderia</ion-label>
+                            <ion-select [(ngModel)]="data.lavanderia" okText="Okay" cancelText="Dismiss">
+                                <ion-select-option value="true">Si</ion-select-option>
+                                <ion-select-option value="false">No</ion-select-option>
+                            </ion-select>
+                        </ion-item>
+                    </ion-list>
+                </ion-col>
+            </ion-row>
+            <ion-list lines="full" class="ion-no-margin ion-no-padding">
+                <ion-item>
+                    <ion-label position="floating">Titulo</ion-label>
+                    <ion-input [(ngModel)]="data.titulo"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="floating">Telefono</ion-label>
+                    <ion-input [(ngModel)]="data.telefono" type="tel"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked">Detalles</ion-label>
+                    <ion-textarea [(ngModel)]="data.detalle"></ion-textarea>
+                </ion-item>
+                <ion-item-divider></ion-item-divider>
+            </ion-list>
+            <ion-grid>
+                <ion-row>
+                    <!-- <label for="message-text" class="col-form-label">Imágenes:</label><br> -->
+                    <input type="file" (change)='upload_imagen($event,1)' id="imgs" class="inputfile" accept="image/png/image/x-png,image/jpeg">
+                    <label for="imgs">Selecciona imágenes</label><br>
+                </ion-row>
+                <ion-row class="slides-container">
+                    <div class="carrucel">
+                        <!-- <button type="submit" ion-button color="light" (click)="prev()"></button> -->
+                        <ion-slides pager="false" [options]="slideOpts" class="h-100" #slides>
+                            <ion-slide class="img " *ngFor="let item of imagenes;let idx=index">
+                                <div class="imgc w-100 h-100" [ngStyle]="{'background-image': 'url('+ item.img +')'}" (click)="clickImg(idx)"></div>
+                            </ion-slide>
+                        </ion-slides>
+                        <!-- <button type="submit" ion-button color="light" (click)="next()"></button> -->
+                        <!-- <button type="submit" ion-button color="light" class="swiper-button-next swiper-button-black" (click)="next()"></button> -->
+                    </div>
+                </ion-row>
+            </ion-grid>
+        </ion-card-content>
+        <ion-card class="animated fadeIn" *ngIf="miPosicion.latitud != null">
+            <ion-card-header>
+                <ion-card-subtitle>{{data.direccion}}</ion-card-subtitle>
+                <!-- <ion-card-title>Card Title</ion-card-title> -->
+            </ion-card-header>
+            <ion-card-content class="ion-no-padding">
+                <agm-map [latitude]="miPosicion.latitud" [longitude]="miPosicion.longitud" [zoom]="10" [zoomControl]="false" [styles]="agmStyles" [streetViewControl]="false">
+                    <agm-marker [latitude]="miPosicion.latitud" [longitude]="miPosicion.longitud" [markerDraggable]="true" (dragEnd)="newPos($event)">
+
+                    </agm-marker>
+                </agm-map>
+            </ion-card-content>
+        </ion-card>
+
+        <ion-row>
+            <ion-col>
+                <ion-button icon-left shape="round" size="full" color="primary" (click)="publicar()">
+                    <ion-ripple-effect></ion-ripple-effect>
+                    <ion-icon name="create"></ion-icon>
+                    Publicar
+                </ion-button>
+            </ion-col>
+        </ion-row>
+    </ion-card>
+
+
+
+</ion-content>
