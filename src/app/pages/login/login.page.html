@@ -1,99 +1,99 @@
 <ion-content class="ion-padding animated fadeIn login auth-page">
-  <video autoplay loop muted class="video-bg" playsinline webkit-playsinline>
-    <source src="assets/video/footage-hotel.mp4" type='video/mp4; codecs="h.264"'>
-    <source src="assets/video/footage-hotel.webm" type="video/webm">
-  </video>
+    <video autoplay loop muted class="video-bg" playsinline webkit-playsinline>
+        <source src="assets/video/footage-hotel.mp4" type='video/mp4; codecs="h.264"'>
+        <source src="assets/video/footage-hotel.webm" type="video/webm">
+    </video>
 
-  <div class="auth-content">
+    <div class="auth-content">
 
-    <!-- Logo -->
-    <div class="ion-padding-horizontal ion-text-center animated fadeInDown">
-      <div class="logo"></div>
-      <h4 class="ion-no-margin">
-        <ion-text color="light">
-          {{ 'app.name'  }}
-          <ion-text color="secondary" class="fw700"> {{ 'app.version'  }}</ion-text>
-        </ion-text>
-      </h4>
-    </div>
+        <!-- Logo -->
+        <div class="ion-padding-horizontal ion-text-center animated fadeInDown">
+            <div class="logo"></div>
+            <h4 class="ion-no-margin">
+                <ion-text color="light">
+                    iHome
+                    <!-- <ion-text color="secondary" class="fw700"> {{ 'app.version'  }}</ion-text> -->
+                </ion-text>
+            </h4>
+        </div>
 
-    <!-- Login form -->
-    <form [formGroup]="onLoginForm" class="list-form">
-      <ion-item class="ion-no-padding animated fadeInUp">
-        <ion-label position="floating">
-          <ion-icon name="mail" item-start></ion-icon>
-          Correo
-        </ion-label>
-        <ion-input color="secondary" type="email" formControlName="email"></ion-input>
-      </ion-item>
-      <p class="text08" *ngIf="onLoginForm.get('email').touched && onLoginForm.get('email').hasError('required')">
-        <ion-text color="danger">
-          {{ 'app.label.errors.field'  }}
-        </ion-text>
-      </p>
+        <!-- Login form -->
+        <form [formGroup]="onLoginForm" class="list-form">
+            <ion-item class="ion-no-padding animated fadeInUp">
+                <ion-label position="floating">
+                    <ion-icon name="mail" item-start></ion-icon>
+                    Correo
+                </ion-label>
+                <ion-input color="secondary" type="email" formControlName="email"></ion-input>
+            </ion-item>
+            <p class="text08" *ngIf="onLoginForm.get('email').touched && onLoginForm.get('email').hasError('required')">
+                <ion-text color="danger">
+                    El campo es requerido
+                </ion-text>
+            </p>
 
-      <ion-item class="ion-no-padding animated fadeInUp">
-        <ion-label position="floating">
-          <ion-icon name="lock" item-start></ion-icon>
-          Contraseña
-        </ion-label>
-        <ion-input color="secondary" type="password" formControlName="password"></ion-input>
-      </ion-item>
-      <p color="danger" class="text08" *ngIf="onLoginForm.get('password').touched && onLoginForm.get('password').hasError('required')">
-        <ion-text color="danger">
-          {{ 'app.label.errors.field'  }}
-        </ion-text>
-        </p>
-    </form>
+            <ion-item class="ion-no-padding animated fadeInUp">
+                <ion-label position="floating">
+                    <ion-icon name="lock" item-start></ion-icon>
+                    Contraseña
+                </ion-label>
+                <ion-input color="secondary" type="password" formControlName="password"></ion-input>
+            </ion-item>
+            <p color="danger" class="text08" *ngIf="onLoginForm.get('password').touched && onLoginForm.get('password').hasError('required')">
+                <ion-text color="danger">
+                    El campo es requerido
+                </ion-text>
+            </p>
+        </form>
 
-    <p tappable (click)="forgotPass()" class="ion-text-right paz">
-      <ion-text color="tertiary">
-        <strong>Olvidaste tu contraseña?</strong>
-      </ion-text>
-    </p>
+        <!-- <p tappable (click)="forgotPass()" class="ion-text-right paz">
+            <ion-text color="tertiary">
+                <strong>Olvidaste tu contraseña?</strong>
+            </ion-text>
+        </p> -->
 
-    <div>
-      <ion-button icon-left size="medium" expand="full" shape="round" color="dark" (click)="loginUser()" [disabled]="!onLoginForm.valid" tappable>
-        <ion-icon name="log-in"></ion-icon>
-        Iniciar
-      </ion-button>
+        <div>
+            <ion-button icon-left size="medium" expand="full" shape="round" color="dark" (click)="loginUser()" [disabled]="!onLoginForm.valid" tappable>
+                <ion-icon name="log-in"></ion-icon>
+                Iniciar
+            </ion-button>
 
-      <p class="ion-text-center">
-        <ion-text color="light">
-         <!-- {{ 'app.button.signin'  }}-->
-        </ion-text>
-      </p>
+            <p class="ion-text-center">
+                <ion-text color="light">
+                    <!-- {{ 'app.button.signin'  }}-->
+                </ion-text>
+            </p>
 
-      <ion-grid class="btn-group">
-        <ion-row>
-          <ion-col size="4">
-            <!-- <ion-button shape="round" expand="full" fill="outline" color="tertiary">
+            <ion-grid class="btn-group">
+                <ion-row>
+                    <ion-col size="4">
+                        <!-- <ion-button shape="round" expand="full" fill="outline" color="tertiary">
               <ion-icon slot="icon-only" name="logo-facebook"></ion-icon>
             </ion-button> -->
-          </ion-col>
-          <ion-col size="4">
-            <!-- <ion-button shape="round" expand="full" fill="outline" color="tertiary">
+                    </ion-col>
+                    <ion-col size="4">
+                        <!-- <ion-button shape="round" expand="full" fill="outline" color="tertiary">
               <ion-icon slot="icon-only" name="logo-twitter"></ion-icon>
             </ion-button> -->
-          </ion-col>
-          <ion-col size="4">
-            <!-- <ion-button shape="round" expand="full" fill="outline" color="tertiary">
+                    </ion-col>
+                    <ion-col size="4">
+                        <!-- <ion-button shape="round" expand="full" fill="outline" color="tertiary">
               <ion-icon slot="icon-only" name="logo-googleplus"></ion-icon>
             </ion-button> -->
-          </ion-col>
-        </ion-row>
-      </ion-grid>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+
+        </div>
+
+        <!-- Other links -->
+        <div class="ion-text-center ion-margin-top">
+            <span (click)="goToRegister()" class="paz" tappable>
+                <ion-text color="light">
+                    <strong>Registrar</strong>
+                </ion-text>
+            </span>
+        </div>
 
     </div>
-
-    <!-- Other links -->
-    <div class="ion-text-center ion-margin-top">
-      <span (click)="goToRegister()" class="paz" tappable>
-        <ion-text color="light">
-         <strong>Registrar</strong>
-        </ion-text>
-      </span>
-    </div>
-
-  </div>
 </ion-content>

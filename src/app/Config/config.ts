@@ -1,9 +1,12 @@
 export const Config = {
 };
 export const Header = {
-  'Authorization': '3A6E5ADB58DD1D45170514CD6A60EA32',
-  'Content-Type': 'application/json',
-  'Access-Control-Allow-Origin': '*'
+    // 'Authorization': 'NTQyODQyNzM2MGE4NWI0MDFjNmMzYjZhMDE5NzgyY2Q',
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Headers': '*',
+    'Accept': 'application/json, text/plain',
+    'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT'
 }
 
 export const WEB_SERVICE = "http://localhost:3002/";

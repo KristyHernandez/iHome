@@ -4,6 +4,7 @@ import { Storage } from '@ionic/storage';
 import { PagosService } from '../../Services/pagos.service';
 import { isApp } from '../../Config/config';
 import { LoadingController, Platform, NavController, ModalController } from '@ionic/angular';
+import { UsersService } from '../../providers/usuarios/users.service';
 
 
 import pdfMake from 'pdfmake/build/pdfmake';
@@ -40,35 +41,42 @@ export class RentcarPage implements OnInit {
         private file: File,
         private fileOpener: FileOpener,
         private plt: Platform,
+        private _api: UsersService,
+        public navCtrl: NavController,
     ) { }
 
     ngOnInit() {
-        // this.reload()
+        this.reload()
         this.es_movil = isApp;
     }
 
-    // reload(){
-    //   this.present()
-    //   this.storage.get('token').then(token=>{
-    //     this.Pro_pagos.getPagos(token).subscribe(async data=>{
-    //         this.pagos = data;
-    //         this.monto = data.monto
-    //         await this.dismiss()
-    //     })
-    //   })
-    // }
+    async reload() {
+        this.present()
+        let h: any = await this._api.historial()
+        let d: any = await this._api.validaPago()
 
+        this.pagos.historial = await h
+        if (d[0].valida_pago <= 0) {
+            this.pagos.dias_restantes = await 0
+        } else {
+            this.pagos.dias_restantes = await d[0].valida_pago
+        }
+
+    }
+    async close() {
+        this.navCtrl.navigateRoot('/home');
+    }
     pagar() {
         this.payPal1.init({
             PayPalEnvironmentProduction: 'YOUR_PRODUCTION_CLIENT_ID',
-            PayPalEnvironmentSandbox: 'AWx9vd7DrXzsMzwbAKBkqgfY4nUDfsc-cSmtg-b2GJeGDcWJs1mtNTqdiUAakKenVMHrsqnQ1gHoCcK_'
+            PayPalEnvironmentSandbox: 'AbCTE5cBhNdc8NfW54A9r5AqZax26PAV7_gm2ysJ1PNi2nuAqDeRqmVZn6Z3itA5GVTV0_4uQRsPKKkB'
         }).then(() => {
             this.payPal1.prepareToRender('PayPalEnvironmentSandbox', new PayPalConfiguration({
             })).then(() => {
                 let payment = new PayPalPayment(this.monto, 'USD', 'Description', 'sale');
                 this.payPal1.renderSinglePaymentUI(payment).then(async respose => {
                     await this.Pro_pagos.insertPago(respose, respose.response.id, this.monto)
-                    // this.reload();
+                    this.reload();
                 }, () => { });
             }, () => { });
         }, () => { });
@@ -77,7 +85,7 @@ export class RentcarPage implements OnInit {
     paypalConfig = {
         env: 'sandbox',
         client: {
-            sandbox: 'AWx9vd7DrXzsMzwbAKBkqgfY4nUDfsc-cSmtg-b2GJeGDcWJs1mtNTqdiUAakKenVMHrsqnQ1gHoCcK_',
+            sandbox: 'AbCTE5cBhNdc8NfW54A9r5AqZax26PAV7_gm2ysJ1PNi2nuAqDeRqmVZn6Z3itA5GVTV0_4uQRsPKKkB',
             production: '<your-production-key here>'
         },
         commit: true,
@@ -93,7 +101,7 @@ export class RentcarPage implements OnInit {
         onAuthorize: (data, actions) => {
             return actions.payment.execute().then(async payment => {
                 await this.Pro_pagos.insertPago(payment, payment.id, this.monto)
-                // this.reload();
+                this.reload();
             })
         }
     };
@@ -117,7 +125,7 @@ export class RentcarPage implements OnInit {
     }
 
     async doRefresh(event) {
-        // this.reload()
+        this.reload()
         event.target.complete();
     }
 

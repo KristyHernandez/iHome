@@ -51,21 +51,23 @@ export class HomePage {
         name: this.translate.get('app.pages.home.label.checkout'),
         date: new Date(new Date().setDate(new Date().getDate() + 1)).toISOString()
     };
-
+    hotels: any = []
     constructor(
         public navCtrl: NavController,
         public menuCtrl: MenuController,
         public loadingCtrl: LoadingController,
         private translate: TranslateProvider,
-        public hotels: HotelProvider,
+        // public hotels: HotelProvider,
         private _api: UsersService,
         private Geolocation: Geolocation
     ) {
 
-        this.hotels = hotels.getAll();
+
     }
 
-    ngAfterViewInit() {
+    async ngAfterViewInit() {
+        this.hotels = await this._api.ultimos()
+        console.log(this.hotels)
 
     }
 

@@ -25,16 +25,15 @@ export class LoginPage implements OnInit {
 
     ionViewWillEnter() {
         this.menuCtrl.enable(false);
-        if (String(sessionStorage.getItem("user")) != 'null' || String(sessionStorage.getItem("user")) != 'undefined') {
-            // console.log("#-")
-            // this._rute.navigate(['/home']);
-            this.navCtrl.navigateRoot('/home');
-        } else {
-        }
+
     }
 
-    ngOnInit() {
-        document.querySelector('video').play();
+    async ngOnInit() {
+
+
+
+
+        try { document.querySelector('video').play(); } catch (e) { }
 
         this.onLoginForm = this.formBuilder.group({
             'email': [null, Validators.compose([
@@ -101,7 +100,7 @@ export class LoginPage implements OnInit {
     }
 
     async loginUser() {
-        console.log(this.onLoginForm.value)
+        // console.log(this.onLoginForm.value)
         let resp: any = await this._api.login(this.onLoginForm.value)
         if (resp.email == this.onLoginForm.value.email) {
             sessionStorage.setItem("user", JSON.stringify(resp))

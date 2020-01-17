@@ -3,6 +3,11 @@
         <ion-buttons slot="start">
             <ion-back-button></ion-back-button>
         </ion-buttons>
+        <ion-buttons slot="end">
+            <ion-button color="secondary" (click)="close()">
+                <ion-icon slot="icon-only" name="close"></ion-icon>
+            </ion-button>
+        </ion-buttons>
         <ion-title>Mis Pagos</ion-title>
     </ion-toolbar>
 </ion-header>
@@ -13,106 +18,45 @@
         <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Hale para recargar" refreshingSpinner="circles" refreshingText="Recargando..."></ion-refresher-content>
     </ion-refresher>
     <ion-grid>
-        <ion-row justify-content-center>
-            <ion-col align-self-center size-md="2" size-lg="2" size-xs="6">
-                <ion-label text-center class="restante">Dias Restantes</ion-label>
+        <ion-row class="ion-justify-content-center">
+            <ion-col class="ion-align-self-center" size-md="2" size-lg="2" size-xs="6">
+                <ion-label class="ion-text-center" class="restante">Dias Restantes</ion-label>
             </ion-col>
-            <ion-col align-self-center size-md="2" size-lg="1" size-xs="5"></ion-col>
+            <ion-col class="ion-align-self-center" size-md="2" size-lg="1" size-xs="5"></ion-col>
         </ion-row>
-        <ion-row justify-content-center>
-            <ion-col align-self-center size-md="2" size-lg="1" size-xs="4">
+        <ion-row class="ion-justify-content-center">
+            <ion-col class="ion-align-self-center" size-md="2" size-lg="1" size-xs="4">
                 <ion-label class="counter">{{pagos.dias_restantes}}</ion-label>
             </ion-col>
-            <ion-col align-self-center size-md="2" size-lg="2" size-xs="6">
-                <ion-button color="warning" (click)="pagar()" expand="full">Pagar &nbsp;<ion-icon color="success" name="ios-cash">
+            <ion-col class="ion-align-self-center" size-md="2" size-lg="2" size-xs="6">
+                <!-- <ion-button color="warning" (click)="pagar()" expand="full">Pagar &nbsp;<ion-icon color="success" name="ios-cash">
                     </ion-icon>
-                </ion-button>
-                <div id="paypal-checkout-btn" [hidden]="es_movil"></div>
+                </ion-button> -->
+                {{pagos.dias_restantes<=0? '$' + monto :''}}
+                <div id="paypal-checkout-btn" [hidden]="pagos.dias_restantes>0"></div>
             </ion-col>
         </ion-row>
-        <ion-row justify-content-center>
-            <ion-col align-self-center size-md="6" size-lg="4" size-xs="12">
+        <ion-row class="ion-justify-content-center">
+            <ion-col class="ion-align-self-center" size-md="6" size-lg="4" size-xs="12">
                 <ion-item color="primary">
                     <ion-item color="primary">
-                        <p slot="end" class="historial">Historial de facturas</p>
+                        <p slot="end" class="historial">Historial de pagos</p>
                     </ion-item>
                     <ion-icon slot="end" name="list-box"></ion-icon>
                 </ion-item>
             </ion-col>
         </ion-row>
-        <ion-row justify-content-center class="row_historial" *ngFor="let item of pagos.historial" (click)="downloadPdf(item.id_pago)">
-            <ion-col align-self-center size-md="5" size-lg="3" size-xs="10">
+        <!-- <ion-row class="row_historial ion-justify-content-center" *ngFor="let item of pagos.historial" (click)="downloadPdf(item.id_pago)"> -->
+        <ion-row class="row_historial ion-justify-content-center" *ngFor="let item of pagos.historial">
+            <ion-col class="ion-align-self-center" size-md="5" size-lg="3" size-xs="10">
                 <ion-label>
                     <h2 class="id_pago">{{item.id}}</h2>
-                    <h4 class="fecha_pago">Fecha: {{item.fecha}}</h4>
+                    <h4 class="fecha_pago">Fecha: {{item.fecha | date}}</h4>
                 </ion-label>
             </ion-col>
-            <ion-col align-self-center size-md="1" size-lg="1" size-xs="2">
+            <ion-col class="ion-align-self-center" size-md="1" size-lg="1" size-xs="2">
                 <p class="monto">{{item.monto | currency:"USD":true:"1.2"}}</p>
             </ion-col>
         </ion-row>
-    </ion-grid> -->
-    <!-- <ion-grid fixed>
-    <ion-row>
-      <ion-col>
-
-        <h6 class="ion-no-margin ion-margin-bottom">
-          <ion-text color="primary">Pick-up / Drop-off</ion-text>
-        </h6>
-        <ion-card class="ion-no-margin ion-margin-bottom bg-white">
-          <ion-item tappable (click)="choosePlace('from')" class="border-bottom">
-            <ion-icon name="pin" color="primary" slot="start"></ion-icon>
-            <ion-text color="primary">{{ search.pickup }}</ion-text>
-          </ion-item>
-          <ion-item tappable (click)="choosePlace('to')">
-            <ion-icon name="pin" color="primary" slot="start"></ion-icon>
-            <ion-text color="primary">{{ search.dropOff }}</ion-text>
-          </ion-item>
-        </ion-card>
-
-
-        <ion-card class="ion-no-margin ion-margin-bottom bg-white">
-          <ion-item>
-            <ion-icon name="md-calendar" color="primary" slot="start"></ion-icon>
-            <ion-datetime class="no-pl" color="primary" displayFormat="DD/MM/YYYY h:mm A" pickerFormat="DD/MM/YYYY h:mm A"
-              [(ngModel)]="search.from"></ion-datetime>
-          </ion-item>
-          <ion-item>
-            <ion-icon name="md-calendar" color="primary" slot="start"></ion-icon>
-            <ion-datetime class="no-pl" color="primary" displayFormat="DD/MM/YYYY h:mm A" pickerFormat="DD/MM/YYYY h:mm A"
-              [(ngModel)]="search.to"></ion-datetime>
-          </ion-item>
-        </ion-card>
-
-        <hr>
-
-        <h6 class="ion-no-margin ion-margin-bottom">
-          <ion-text color="primary">Make:</ion-text>
-        </h6>
-        <ion-card class="ion-no-margin ion-margin-bottom bg-white">
-          <ion-item>
-            <ion-label>
-              <ion-text color="primary">One or more:</ion-text>
-            </ion-label>
-            <ion-select [(ngModel)]="toppings" color="primary" multiple="true" cancelText="Cancel" okText="OK">
-              <ion-select-option value="audi" selected="true">Audi</ion-select-option>
-              <ion-select-option value="bmw">BMW</ion-select-option>
-              <ion-select-option value="chevrolet" selected="true">Chevrolet</ion-select-option>
-              <ion-select-option value="dodge">Dodge</ion-select-option>
-              <ion-select-option value="fiat">FIAT</ion-select-option>
-              <ion-select-option value="ford">Ford</ion-select-option>
-              <ion-select-option value="honda">Honda</ion-select-option>
-              <ion-select-option value="toyota">Toyota</ion-select-option>
-              <ion-select-option value="volvo">Volvo</ion-select-option>
-            </ion-select>
-          </ion-item>
-        </ion-card>
-
-        <ion-button shape="round" expand="full" color="dark" (click)="doSearch()">
-          <ion-icon slot="start" name="search"></ion-icon> Search
-        </ion-button>
-
-      </ion-col>
-    </ion-row>
-  </ion-grid> -->
+    </ion-grid>
 </ion-content>

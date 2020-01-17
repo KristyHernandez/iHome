@@ -96,7 +96,12 @@ export class HotelDetailPage implements OnInit {
 
     async editaModal() {
         console.log("·40000")
-        const modal = await this.modalCtrl.create({ component: EditPostPage });
+        const modal = await this.modalCtrl.create({
+            component: EditPostPage,
+            componentProps: {
+                data: this.hotel
+            }
+        });
         console.log(modal)
         console.log("·40000")
         modal.onDidDismiss().then(async (data: any) => {

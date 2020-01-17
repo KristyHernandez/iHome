@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, NgZone } from '@angular/core';
 import { AlertController, IonSlides, ModalController } from '@ionic/angular';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { environment } from '../../../environments/environment';
@@ -25,23 +25,9 @@ export class EditPostPage implements OnInit {
         longitud: null
     }
     nuevo: boolean = false
-    data: any = {
-        garaje: null,
-        rooms: null,
-        children: null,
-        mascotas: null,
-        sala: null,
-        cocina: null,
-        lavanderia: null,
-        amueblado: null,
-        direccion: null,
-        ciudad: null,
-        titulo: null,
-        telefono: null,
-        detalle: null
+    @Input() data: any = {
     }
 
-    // -----
     cover_patch: File = null
     imagenes_list: File[] = []
     imagenes: any = []
@@ -55,31 +41,53 @@ export class EditPostPage implements OnInit {
     agmStyles: any[] = environment.agmStyles;
     // @ViewChild('slides') slides: IonSlides;
     @ViewChild("slides", { static: false }) slides: IonSlides;
+
     constructor(public _alerta: AlertController,
         private Geolocation: Geolocation,
         private _api: UsersService,
-        private _modal: ModalController
+        private _modal: ModalController,
+        private _ngZone: NgZone
 
     ) { }
 
 
 
     async ngOnInit() {
+        console.log(JSON.stringify(this.data))
+        setTimeout(() => {
+            this._ngZone.runOutsideAngular(() => {
+                this._ngZone.run(() => { console.log('Outside Done!'); });
+            });
 
+            this.miPosicion = {
+                latitud: this.data.latitud,
+                longitud: this.data.longitud
+            }
+
+            for (let i = 0; i < this.data.images.length; i++) {
+                this.imagenes.push({
+                    img: this.data.images[i].url_foto,
+                    ver: 'true',
+                })
+                // console.log(this.data.images[i].url_foto)
+            }
+
+            console.log(this.imagenes)
+        }, 1000)
     }
 
 
     async ionViewWillEnter() {
 
-        await this.Geolocation.getCurrentPosition().then(async (resp) => {
-            this.miPosicion.latitud = resp.coords.latitude
-            this.miPosicion.longitud = resp.coords.longitude
-            // console.log(this.miPosicion);
-            await this.miGps(this.miPosicion)
-
-        }).catch((error) => {
-            console.log('Error getting location', error);
-        });
+        // await this.Geolocation.getCurrentPosition().then(async (resp) => {
+        //     this.miPosicion.latitud = resp.coords.latitude
+        //     this.miPosicion.longitud = resp.coords.longitude
+        //     // console.log(this.miPosicion);
+        //     await this.miGps(this.miPosicion)
+        //
+        // }).catch((error) => {
+        //     console.log('Error getting location', error);
+        // });
     }
 
     async miGps(data) {
@@ -103,6 +111,7 @@ export class EditPostPage implements OnInit {
 
 
     async upload_imagen(event, id = 0) {
+        // console.log(event)
         let name = ''
         if (event.target.files && event.target.files[0]) {
             var imagen = new FileReader();
@@ -184,7 +193,7 @@ export class EditPostPage implements OnInit {
     }
 
     async publicar() {
-        if (String(this.data.titulo) == 'null' || String(this.data.descripcion) == 'null' || !this.imagenes[0]) return
+        if (String(this.data.titulo) == 'null' || String(this.data.descripcion) == 'null') return
         this.data["pos"] = await this.miPosicion
         this.data["id"] = await JSON.parse(sessionStorage.getItem("user")).id_user
 
@@ -216,7 +225,7 @@ export class EditPostPage implements OnInit {
             this.data.amueblado = false
         }
 
-        let resp: any = await this._api.genera(this.data)
+        let resp: any = await this._api.update(this.data)
         // console.log(resp)
         if (resp.id) {
             for (let i = 0; i < this.imagenes_list.length; i++) {
@@ -227,6 +236,11 @@ export class EditPostPage implements OnInit {
     }
 
 
+    async close() {
+        console.log("#")
+        this._modal.dismiss()
+        console.log("#2")
+    }
 
 
 

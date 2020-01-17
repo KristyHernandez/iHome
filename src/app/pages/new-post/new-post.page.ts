@@ -67,6 +67,9 @@ export class NewPostPage implements OnInit {
     async ngOnInit() {
 
     }
+    async close() {
+        await this._modal.dismiss()
+    }
 
 
     async ionViewWillEnter() {

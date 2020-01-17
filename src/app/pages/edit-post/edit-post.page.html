@@ -1,7 +1,9 @@
 <ion-header>
     <ion-toolbar color="primary">
-        <ion-buttons slot="start">
-            <ion-back-button></ion-back-button>
+        <ion-buttons slot="end">
+            <ion-button color="secondary" (click)="close()">
+                <ion-icon slot="icon-only" name="close"></ion-icon>
+            </ion-button>
         </ion-buttons>
         <ion-title>Editando nuevo</ion-title>
     </ion-toolbar>
@@ -9,14 +11,14 @@
 
 
 <ion-content class="ion-padding animated fadeIn">
-    <ion-card class="searchcard animated fadeIn">
+    <ion-card class="searchcard animated fadeIn" *ngIf="data!=''">
         <ion-card-content>
             <ion-row class="adjust-qts">
                 <ion-col class="ion-no-padding br bb bl bt">
                     <ion-list>
                         <ion-item>
                             <ion-label>Habitaciones</ion-label>
-                            <ion-select [(ngModel)]="data.rooms" okText="Okay" cancelText="Dismiss">
+                            <ion-select [(ngModel)]="data.numero_cuartos" okText="Okay" cancelText="Dismiss">
                                 <ion-select-option *ngFor="let item of [].constructor(9);let idx=index" [value]="idx">{{idx}}</ion-select-option>
                             </ion-select>
                         </ion-item>
@@ -25,12 +27,16 @@
 
                 <ion-col class="ion-no-padding br bb bl bt">
                     <ion-list>
-                        <ion-item>
+                        <!-- <ion-item>
                             <ion-label>Garaje</ion-label>
                             <ion-select [(ngModel)]="data.garaje" okText="Okay" cancelText="Dismiss">
-                                <ion-select-option value="true">Si</ion-select-option>
-                                <ion-select-option value="false">No</ion-select-option>
+                                <ion-select-option value="1">Si</ion-select-option>
+                                <ion-select-option value="0">No</ion-select-option>
                             </ion-select>
+                        </ion-item> -->
+                        <ion-item>
+                            <ion-label>Garaje</ion-label>
+                            <ion-toggle [(ngModel)]="data.garaje"></ion-toggle>
                         </ion-item>
                     </ion-list>
                 </ion-col>
@@ -42,7 +48,7 @@
                     <ion-list>
                         <ion-item>
                             <ion-label>Niños</ion-label>
-                            <ion-select [(ngModel)]="data.children" okText="Okay" cancelText="Dismiss">
+                            <ion-select [(ngModel)]="data.ninios" okText="Okay" cancelText="Dismiss">
                                 <ion-select-option *ngFor="let item of [].constructor(9);let idx=index" [value]="idx">{{idx}}</ion-select-option>
                             </ion-select>
                         </ion-item>
@@ -50,12 +56,16 @@
                 </ion-col>
                 <ion-col class="ion-no-padding br bb bl bt">
                     <ion-list>
-                        <ion-item>
+                        <!-- <ion-item>
                             <ion-label>Mascotas</ion-label>
                             <ion-select [(ngModel)]="data.mascotas" okText="Okay" cancelText="Dismiss">
                                 <ion-select-option value="true">Si</ion-select-option>
                                 <ion-select-option value="false">No</ion-select-option>
                             </ion-select>
+                        </ion-item> -->
+                        <ion-item>
+                            <ion-label>Macotas</ion-label>
+                            <ion-toggle [(ngModel)]="data.mascotas"></ion-toggle>
                         </ion-item>
                     </ion-list>
                 </ion-col>
@@ -65,24 +75,33 @@
             <ion-row class="adjust-qts">
                 <ion-col class="ion-no-padding br bb bl bt">
                     <ion-list>
-                        <ion-item>
+                        <!-- <ion-item>
                             <ion-label>Sala</ion-label>
                             <ion-select [(ngModel)]="data.sala" okText="Okay" cancelText="Dismiss">
                                 <ion-select-option value="true">Si</ion-select-option>
                                 <ion-select-option value="false">No</ion-select-option>
                             </ion-select>
+                        </ion-item> -->
+
+                        <ion-item>
+                            <ion-label>Sala</ion-label>
+                            <ion-toggle [(ngModel)]="data.sala"></ion-toggle>
                         </ion-item>
                     </ion-list>
                 </ion-col>
                 <ion-col class="ion-no-padding br bb bl bt">
                     <ion-list>
-                        <ion-item>
+                        <!-- <ion-item>
                             <ion-label>Amueblado</ion-label>
                             <ion-select [(ngModel)]="data.amueblado" okText="Okay" cancelText="Dismiss">
                                 <ion-select-option value="true">Si</ion-select-option>
                                 <ion-select-option value="false">No</ion-select-option>
 
                             </ion-select>
+                        </ion-item> -->
+                        <ion-item>
+                            <ion-label>Amueblado</ion-label>
+                            <ion-toggle [(ngModel)]="data.amueblado"></ion-toggle>
                         </ion-item>
                     </ion-list>
                 </ion-col>
@@ -91,31 +110,44 @@
             <ion-row class="adjust-qts">
                 <ion-col class="ion-no-padding br bb bl bt">
                     <ion-list>
-                        <ion-item>
+                        <!-- <ion-item>
                             <ion-label>Cocina</ion-label>
                             <ion-select [(ngModel)]="data.cocina" okText="Okay" cancelText="Dismiss">
                                 <ion-select-option value="true">Si</ion-select-option>
                                 <ion-select-option value="false">No</ion-select-option>
                             </ion-select>
+                        </ion-item> -->
+                        <ion-item>
+                            <ion-label>Cocina</ion-label>
+                            <ion-toggle [(ngModel)]="data.cocina"></ion-toggle>
                         </ion-item>
+
                     </ion-list>
                 </ion-col>
                 <ion-col class="ion-no-padding br bb bl bt">
                     <ion-list>
-                        <ion-item>
+                        <!-- <ion-item>
                             <ion-label>Lavanderia</ion-label>
                             <ion-select [(ngModel)]="data.lavanderia" okText="Okay" cancelText="Dismiss">
                                 <ion-select-option value="true">Si</ion-select-option>
                                 <ion-select-option value="false">No</ion-select-option>
                             </ion-select>
+                        </ion-item> -->
+                        <ion-item>
+                            <ion-label>Lavanderia</ion-label>
+                            <ion-toggle [(ngModel)]="data.lavanderia"></ion-toggle>
                         </ion-item>
                     </ion-list>
                 </ion-col>
             </ion-row>
             <ion-list lines="full" class="ion-no-margin ion-no-padding">
                 <ion-item>
+                    <ion-label>Disponible</ion-label>
+                    <ion-toggle [(ngModel)]="data.anuncio_activo"></ion-toggle>
+                </ion-item>
+                <ion-item>
                     <ion-label position="floating">Titulo</ion-label>
-                    <ion-input [(ngModel)]="data.titulo"></ion-input>
+                    <ion-input [(ngModel)]="data.anuncio"></ion-input>
                 </ion-item>
                 <ion-item>
                     <ion-label position="floating">Telefono</ion-label>
@@ -123,7 +155,7 @@
                 </ion-item>
                 <ion-item>
                     <ion-label position="stacked">Detalles</ion-label>
-                    <ion-textarea [(ngModel)]="data.detalle"></ion-textarea>
+                    <ion-textarea [(ngModel)]="data.descripcion"></ion-textarea>
                 </ion-item>
                 <ion-item-divider></ion-item-divider>
             </ion-list>
@@ -166,7 +198,7 @@
                 <ion-button icon-left shape="round" size="full" color="primary" (click)="publicar()">
                     <ion-ripple-effect></ion-ripple-effect>
                     <ion-icon name="create"></ion-icon>
-                    Publicar
+                    Actualizar
                 </ion-button>
             </ion-col>
         </ion-row>

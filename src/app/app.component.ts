@@ -88,12 +88,11 @@ export class AppComponent implements OnInit {
     }
 
     async ngOnInit() {
-        // if (String(sessionStorage.getItem("user")) != 'null' || String(sessionStorage.getItem("user")) != 'undefined') {
-        //     // console.log("#-")
-        //     this._rute.navigate(['/home']);
-        // } else {
-        //     this._rute.navigate(['/login']);
-        // }
+        if (sessionStorage.getItem("user") != null) {
+            this._rute.navigate(['/home']);
+        } else {
+            this._rute.navigate(['/login']);
+        }
     }
 
     /**
@@ -135,8 +134,9 @@ export class AppComponent implements OnInit {
      *
      * @memberof AppComponent
      */
-    logout() {
-        this.navCtrl.navigateRoot('login');
+    async salir() {
+        await sessionStorage.removeItem("user")
+        await this.navCtrl.navigateRoot('login');
     }
 
     async modal() {

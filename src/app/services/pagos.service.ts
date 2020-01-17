@@ -20,12 +20,12 @@ export class PagosService {
 
         //Preparacion de body
         let body = {
-            token: await this.storage.get('token'),
             id: p_id,
+            user: await JSON.parse(sessionStorage.getItem("user")).id_user,
             monto: p_monto,
             response: p_response
         };
-        let url = `${WEB_SERVICE}api/pagos/insertPago`
+        let url = `${WEB_SERVICE}users/pago`
 
         return await this.Pro_http.post(url, body, { headers }).toPromise()
     }

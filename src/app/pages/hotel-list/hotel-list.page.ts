@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, ModalController } from '@ionic/angular';
+import { NavController, ModalController, ToastController } from '@ionic/angular';
 import { TranslateProvider, HotelProvider } from '../../providers';
 import { UsersService } from '../../providers/usuarios/users.service';
 import { NewPostPage } from '../new-post/new-post.page';
@@ -38,7 +38,8 @@ export class HotelListPage implements OnInit {
         private translate: TranslateProvider,
         public hotelService: HotelProvider,
         private _api: UsersService,
-        private _modal: ModalController
+        private _modal: ModalController,
+        public toastController: ToastController
     ) {
         // this.hotels = this.hotelService.getAll();
     }
@@ -57,6 +58,20 @@ export class HotelListPage implements OnInit {
 
 
     async registrarNuevo() {
+        let pago: any = await this._api.validaPago()
+
+        if (pago[0].valida_pago <= 0) {
+            const toast = await this.toastController.create({
+                message: 'Tu fecha de pago ha vencido, por favor realiza el pago de la subcripcion',
+                duration: 2000
+            });
+            toast.present();
+
+            this.navCtrl.navigateRoot('/rentcar')
+
+            return
+        }
+
         const modal = await this._modal.create({ component: NewPostPage });
         modal.onDidDismiss().then(async (data: any) => {
             await this.carga()

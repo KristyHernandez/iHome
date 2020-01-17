@@ -48,7 +48,14 @@
                                 {{p.title}}
                             </ion-label>
                         </ion-item>
+
                     </ion-menu-toggle>
+                    <ion-item (click)="salir()" color="primary">
+                        <ion-icon slot="start" name="log-out" color="light"></ion-icon>
+                        <ion-label>
+                            Salir
+                        </ion-label>
+                    </ion-item>
                 </ion-list>
             </ion-content>
 
