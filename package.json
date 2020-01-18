@@ -45,6 +45,7 @@
         "@ngx-translate/core": "11.0.1",
         "@ngx-translate/http-loader": "4.0.0",
         "angular-in-memory-web-api": "^0.9.0",
+        "card.io.cordova.mobilesdk": "^2.1.0",
         "chart.js": "2.8.0",
         "com.paypal.cordova.mobilesdk": "^3.5.0",
         "cordova-android": "^8.1.0",
@@ -110,7 +111,9 @@
             "cordova-sms-plugin": {},
             "com.paypal.cordova.mobilesdk": {},
             "cordova-plugin-file": {},
-            "cordova-plugin-file-opener2": {}
+            "cordova-plugin-file-opener2": {
+                "ANDROID_SUPPORT_V4_VERSION": "27.+"
+            }
         },
         "platforms": [
             "android",
