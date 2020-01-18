@@ -9,5 +9,5 @@ export const Header = {
     'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT'
 }
 
-export const WEB_SERVICE = "http://localhost:3002/";
+export const WEB_SERVICE = "http://192.168.2.228:3002/";
 export const isApp = false;
